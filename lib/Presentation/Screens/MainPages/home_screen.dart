@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:grady/Presentation/Screens/MainPages/courses_Screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/leaderboard_screen.dart';
-import 'package:grady/Presentation/Screens/MainPages/notification_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/profile_screen.dart';
-
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+
+import '../../Widgets/home_list_tile.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   @override
@@ -28,22 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(top: 18.0,bottom: 18.0),
         child: ListView(
           children: [
-            ListTile (
-              leading:  Container(
-                width: 70,
-                height: 70,
-                decoration:const BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image:AssetImage('assets/images/profile_aya.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              title:const Text('Hi Aya ..',style: TextStyle(fontFamily: 'Poppins',color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),),
-              subtitle:const Text('How are you doing today ?',style: TextStyle(fontFamily: 'Poppins',color: Colors.black,fontSize: 13,fontWeight: FontWeight.bold),),
-              trailing:InkWell(onTap:()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>const NotificationScreen())) ,child: SvgPicture.asset('assets/images/bell.svg')),
-            ),
+            const HomeListTile(),
             const Padding(
               padding:  EdgeInsets.all(18.0),
               child:  Column(
@@ -293,3 +278,5 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 }
+
+

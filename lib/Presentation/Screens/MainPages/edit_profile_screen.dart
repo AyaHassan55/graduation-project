@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grady/Presentation/utilies/consts.dart';
 
-import '../../../components/consts.dart';
 
 
 class EditProfile extends StatelessWidget {
