@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:grady/screens/camera_screen.dart';
-import 'package:grady/screens/courses_Screen.dart';
-import 'package:grady/screens/leaderboard_screen.dart';
-import 'package:grady/screens/notification_screen.dart';
-import 'package:grady/screens/profile_screen.dart';
+import 'package:grady/Presentation/Screens/MainPages/courses_Screen.dart';
+import 'package:grady/Presentation/Screens/MainPages/leaderboard_screen.dart';
+import 'package:grady/Presentation/Screens/MainPages/notification_screen.dart';
+import 'package:grady/Presentation/Screens/MainPages/profile_screen.dart';
+
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 class HomeScreen extends StatefulWidget {
@@ -277,7 +277,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SalomonBottomBarItem(icon:SvgPicture.asset('assets/icons/leaderboard.svg',colorFilter: _currentIndex==1 ?const ColorFilter.mode(Colors.black, BlendMode.srcIn):const ColorFilter.mode(Colors.white, BlendMode.srcIn) , height: 20), title:const Text("LeaderBoard",style: TextStyle(color: Colors.black)), selectedColor: Colors.white,),
               SalomonBottomBarItem(icon:SvgPicture.asset('assets/icons/courses.svg',colorFilter: _currentIndex==2 ?const ColorFilter.mode(Colors.black, BlendMode.srcIn):const ColorFilter.mode(Colors.white, BlendMode.srcIn), height: 20), title:const Text("Courses",style: TextStyle(color: Colors.black)), selectedColor: Colors.white,),
               SalomonBottomBarItem(icon:SvgPicture.asset('assets/icons/icon_profile.svg',colorFilter: _currentIndex==3 ?const ColorFilter.mode(Colors.black, BlendMode.srcIn):const ColorFilter.mode(Colors.white, BlendMode.srcIn), height: 20), title:const Text("Profile",style: TextStyle(color: Colors.black)), selectedColor: Colors.white,),
-              // SalomonBottomBarItem(icon:SvgPicture.asset('assets/icons/camera.svg',colorFilter: _currentIndex==4 ?const ColorFilter.mode(Colors.black, BlendMode.srcIn):const ColorFilter.mode(Colors.white, BlendMode.srcIn), height: 20), title:const Text("Camera",style: TextStyle(color: Colors.black)), selectedColor: Colors.white,),
+              SalomonBottomBarItem(icon:SvgPicture.asset('assets/icons/camera.svg',colorFilter: _currentIndex==4 ?const ColorFilter.mode(Colors.black, BlendMode.srcIn):const ColorFilter.mode(Colors.white, BlendMode.srcIn), height: 20), title:const Text("Camera",style: TextStyle(color: Colors.black)), selectedColor: Colors.white,),
             ],
 
           ),

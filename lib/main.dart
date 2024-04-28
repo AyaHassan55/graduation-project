@@ -1,7 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:grady/screens/camera_screen.dart';
-import 'package:grady/screens/splash/splash_screen.dart';
+
+import 'Presentation/Screens/MainPages/camera_screen.dart';
+
 List<CameraDescription>cameras=[];
 Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();

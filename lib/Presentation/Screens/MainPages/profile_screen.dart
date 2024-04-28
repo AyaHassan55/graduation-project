@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:grady/screens/about_us_screen.dart';
-import 'package:grady/screens/authentication/welcome_screen.dart';
-import 'package:grady/screens/edit_profile_screen.dart';
+import 'package:grady/Presentation/Screens/Authentication/welcome_screen.dart';
+import 'package:grady/Presentation/Screens/MainPages/about_us_screen.dart';
+import 'package:grady/Presentation/Screens/MainPages/edit_profile_screen.dart';
+
 
 
 class ProfileScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             ListTile(
               leading:
-              // SvgPicture.asset('assets/images/girll.svg'),
+
               Container(
                 width: 70,
                 height: 70,

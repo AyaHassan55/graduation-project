@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../services/courses_model.dart';
+import '../../../data/model/course_model.dart';
 
 
 class CourseScreen extends StatefulWidget {
