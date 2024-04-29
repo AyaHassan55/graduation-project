@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "887612404420",
+    "project_id": "grady-52506",
+    "storage_bucket": "grady-52506.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887612404420:android:97151b938d8a5a48a34f91",
+        "android_client_info": {
+          "package_name": "com.example.grady"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv5Ll2Av02TXhiCR6iDZDsDjM5HYDr0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
