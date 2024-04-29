@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grady/Presentation/utilies/consts.dart';
+import 'package:grady/components/consts.dart';
 
 import 'login_screen.dart';
 class SignUpScreen extends StatefulWidget {

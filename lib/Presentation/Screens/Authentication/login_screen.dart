@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:grady/Presentation/Screens/Authentication/forget_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/home_screen.dart';
-import 'package:grady/Presentation/utilies/consts.dart';
-import 'package:grady/Presentation/utilies/custom_text_field.dart';
 
 
 
-
+import '../../../components/consts.dart';
 
 
 
@@ -43,29 +41,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold),),
                 const SizedBox(height: 42,),
 
-                // TextFormField(
-                //   keyboardType: TextInputType.emailAddress,
-                //   textAlign: TextAlign.start,
-                //   cursorColor: CupertinoColors.black,
-                //   cursorRadius: const Radius.circular(2),
-                //   decoration: InputDecoration(
-                //
-                //     enabledBorder: myInputBorder(),
-                //     focusedBorder: myInputBorder(),
-                //     labelText: 'Enter Email',
-                //     labelStyle: const TextStyle(color: Colors.black),
-                //     prefixIcon: const Icon(
-                //       Icons.email_outlined, color: CupertinoColors.black,),
-                //   ),
-                // ),
-                 const CustomTextFormField(prefixIcon: Icon(Icons.email_outlined, color: Colors.black,), hintText: 'Enter Your Email',),
-                const SizedBox(height: 22,),
-                // CustomTextFormField(hintText: 'Enter Your Password', prefixIcon: const Icon(Icons.lock_outline_rounded, color: CupertinoColors.black,),
-                //   suffixIcon: isVisible
-                //       ? const Icon(Icons.visibility_off)
-                //       : const Icon(Icons.visibility),
-                // ),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.start,
+                  cursorColor: CupertinoColors.black,
+                  cursorRadius: const Radius.circular(2),
+                  decoration: InputDecoration(
 
+                    enabledBorder: myInputBorder(),
+                    focusedBorder: myInputBorder(),
+                    labelText: 'Enter Email',
+                    labelStyle: const TextStyle(color: CupertinoColors.black),
+                    prefixIcon: const Icon(
+                      Icons.email_outlined, color: CupertinoColors.black,),
+                  ),
+                ),
+                const SizedBox(height: 22,),
                 TextFormField(
                   obscureText: !isVisible,
                   obscuringCharacter: '*',

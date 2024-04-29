@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/verification_screen.dart';
 
-import '../../utilies/consts.dart';
-
-
+import '../../../components/consts.dart';
 
 
 
