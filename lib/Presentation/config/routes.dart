@@ -75,6 +75,7 @@ class AppRouter{
       case Routes.report:
         return MaterialPageRoute(builder: (_)=>const ReportScreen());
     }
+    return null;
 
   }
 }

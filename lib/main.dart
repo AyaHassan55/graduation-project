@@ -1,9 +1,9 @@
-import 'package:camera/camera.dart';
+// import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:grady/Presentation/Screens/Authentication/login_screen.dart';
+// import 'package:grady/Presentation/Screens/Authentication/login_screen.dart';
 import 'package:grady/Presentation/config/routes.dart';
 
-import 'Presentation/Screens/MainPages/camera_screen.dart';
+// import 'Presentation/Screens/MainPages/camera_screen.dart';
 
 // List<CameraDescription>cameras=[];
 // Future <void> main() async{
