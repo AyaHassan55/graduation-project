@@ -1,10 +1,31 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:grady/Presentation/utilies/consts.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 
-class EditProfile extends StatelessWidget {
+class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  File?file;
+  getImage()async{
+    final ImagePicker picker = ImagePicker();
+
+// Pick an image.
+    final XFile? imageGallery = await picker.pickImage(source: ImageSource.gallery);
+
+// Capture a photo.
+    final XFile? imageCamera = await picker.pickImage(source: ImageSource.camera);
+    file=File(imageCamera!.path);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +38,7 @@ class EditProfile extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Image(image: Svg('assets/images/girll.svg')),
+
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: Container(

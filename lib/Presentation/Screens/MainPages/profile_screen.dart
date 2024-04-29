@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grady/Presentation/Screens/Authentication/welcome_screen.dart';
@@ -83,7 +84,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 26,),
             InkWell(
-              onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>const WelcomeScreen())),
+              onTap: () async{
+                await FirebaseAuth.instance.signOut();
+                 Navigator.of(context).pushNamedAndRemoveUntil('welcome',( route)=>false);
+
+              },
               child: Card(
                 elevation: 2,shadowColor: Colors.grey,
                 child: ListTile(

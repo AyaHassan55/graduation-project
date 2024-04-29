@@ -60,6 +60,7 @@ dependencies:
   flutter_bloc: ^8.1.5
   shared_preferences: ^2.2.3
   flutter_gif: ^0.0.4
+  firebase_auth: ^4.17.8
 
 dev_dependencies:
   flutter_test:

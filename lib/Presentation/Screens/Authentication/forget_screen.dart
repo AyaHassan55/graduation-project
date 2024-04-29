@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/verification_screen.dart';
-
-import '../../utilies/consts.dart';
-
+import 'package:grady/Presentation/utilies/consts.dart';
 
 
 

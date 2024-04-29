@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grady/Presentation/Widgets/build_pin_code.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -64,45 +65,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   const Text("Please write the numbers we have sent to",style: TextStyle(fontWeight: FontWeight.bold),),
                   const Text("your email",style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 30,),
-                  Form(
-                    key: formKey,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 30.0),
-                      child: PinCodeTextField(
-                        appContext: context,
-                        pastedTextStyle:const TextStyle(color: Colors.grey), length: 4,
-                        pinTheme: PinTheme(
-                          shape: PinCodeFieldShape.box,
-                          borderRadius: BorderRadius.circular(5),
-                          fieldHeight: 50,
-                          fieldWidth: 50,
-
-                          inactiveColor: Colors.grey.shade200,
-                          inactiveFillColor: Colors.grey.shade200,
-                          activeFillColor: Colors.white,
-                          disabledColor: Colors.grey.withOpacity(0.5),
-                          errorBorderColor: hasError ? Colors.red : Colors.transparent,
-                          selectedColor: Colors.grey,
-                          selectedFillColor: Colors.white,
-                        ),
-                        cursorColor: Colors.black,
-                        animationDuration: const Duration(milliseconds: 300),
-                        enableActiveFill: true,
-                        keyboardType: TextInputType.number,
-                        boxShadows: const [
-                          BoxShadow(
-                            offset: Offset(0, 1),
-                            color: Colors.black12,
-                            blurRadius: 10,
-                          )
-                        ],
-                        onCompleted: (v) {
-                          debugPrint("Completed");
-                        },
-                      ),
-                    ),
-
-                  ),
+                  BuildPinCode(formKey: formKey, hasError: hasError),
 
                   Padding(
                     padding: const EdgeInsets.only(right: 120.0),
@@ -172,5 +135,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
     );
   }
 }
+
+
 
 
