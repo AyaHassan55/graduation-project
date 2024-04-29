@@ -5,12 +5,7 @@ import 'package:grady/Presentation/Screens/Authentication/forget_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/home_screen.dart';
 import 'package:grady/Presentation/utilies/consts.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
-
-
-
-
+import 'package:grady/Presentation/config/routes.dart' as route;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,20 +16,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isVisible = false;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    FirebaseAuth.instance
-        .authStateChanges()
-        .listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,16 +98,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text('Login', style: TextStyle(color: Colors
                           .white),),)),
                 const SizedBox(height: 20,),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  const Text('Create A New Account ?',
-                      style: TextStyle(color: Colors.grey)),
-                  TextButton(onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => const SignUpScreen()));
-                  },
-                      child: const Text('Sign up', style: TextStyle(
-                          color: CupertinoColors.black,
-                          decoration: TextDecoration.underline))),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [const Text('Create A New Account ?', style: TextStyle(color: Colors.grey)),
+                  TextButton(onPressed: ()=> Navigator.pushNamed(context, route.Routes.signUp),
+                      child: const Text('Sign up', style: TextStyle(color: CupertinoColors.black, decoration: TextDecoration.underline))),
                 ],),
 
               ],

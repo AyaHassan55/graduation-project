@@ -18,6 +18,7 @@ import 'package:grady/Presentation/Screens/MainPages/report_screen.dart';
 import 'package:grady/Presentation/Screens/on_boarding/boarding_screen.dart';
 import 'package:grady/Presentation/Screens/splash/splash_screen.dart';
 class Routes {
+  static const String splash = '/';
   static const String onboard = 'onboard';
   static const String welcome = 'welcome';
   static const String login = 'login';
@@ -37,45 +38,44 @@ class Routes {
   static const String report = 'report';
 }
 
-class AppRouter{
-  Route? generateRoute(RouteSettings settings){
-    switch (settings.name){
+  Route<dynamic>controller(RouteSettings settings) {
+    switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_)=>const SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case Routes.onboard:
-        return MaterialPageRoute(builder: (_)=>const BoardingScreen());
+        return MaterialPageRoute(builder: (_) => const BoardingScreen());
       case Routes.welcome:
-        return MaterialPageRoute(builder: (_)=>const WelcomeScreen());
+        return MaterialPageRoute(builder: (_) => const WelcomeScreen());
       case Routes.login:
-        return MaterialPageRoute(builder: (_)=>const LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.signUp:
-        return MaterialPageRoute(builder: (_)=>const SignUpScreen());
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case Routes.forgetPassword:
-        return MaterialPageRoute(builder: (_)=>const ForgetScreen());
+        return MaterialPageRoute(builder: (_) => const ForgetScreen());
       case Routes.verification:
-        return MaterialPageRoute(builder: (_)=>const VerificationScreen());
+        return MaterialPageRoute(builder: (_) => const VerificationScreen());
       case Routes.resetPassword:
-        return MaterialPageRoute(builder: (_)=>const ResetScreen());
+        return MaterialPageRoute(builder: (_) => const ResetScreen());
       case Routes.doneLogin:
-        return MaterialPageRoute(builder: (_)=>const ToLogin());
+        return MaterialPageRoute(builder: (_) => const ToLogin());
       case Routes.home:
-        return MaterialPageRoute(builder: (_)=>const HomeScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.notification:
-        return MaterialPageRoute(builder: (_)=>const NotificationScreen());
+        return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.leaderBoard:
-        return MaterialPageRoute(builder: (_)=>const LeaderBoardScreen());
+        return MaterialPageRoute(builder: (_) => const LeaderBoardScreen());
       case Routes.profile:
-        return MaterialPageRoute(builder: (_)=>const ProfileScreen());
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
       case Routes.editProfile:
-        return MaterialPageRoute(builder: (_)=>const EditProfile());
+        return MaterialPageRoute(builder: (_) => const EditProfile());
       case Routes.aboutUs:
-        return MaterialPageRoute(builder: (_)=>const AboutUsScreen());
+        return MaterialPageRoute(builder: (_) => const AboutUsScreen());
       case Routes.course:
-        return MaterialPageRoute(builder: (_)=>const CourseScreen());
+        return MaterialPageRoute(builder: (_) => const CourseScreen());
       case Routes.report:
-        return MaterialPageRoute(builder: (_)=>const ReportScreen());
+        return MaterialPageRoute(builder: (_) => const ReportScreen());
+      default:
+        throw('This route name dose not exist');
     }
-    return null;
-
   }
-}
+

@@ -31,77 +31,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             ListTile(
               leading:
-
-              Container(
-                width: 70,
-                height: 70,
-                decoration:const BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image:AssetImage('assets/images/profile_aya.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              Container(width: 70, height: 70, decoration:const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image:AssetImage('assets/images/profile_aya.png'), fit: BoxFit.cover,),)),
               title:const Text('Aya Hassan',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 20)),
               subtitle:const Text('Flutter Developer',style: TextStyle(fontFamily: 'Poppins',fontSize: 16)),
               trailing:InkWell(onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>const EditProfile()))
                   ,child: SvgPicture.asset('assets/images/edit.svg')),
             ),
             const SizedBox(height: 56,),
-            Card( elevation: 2,shadowColor: Colors.grey,
-              child: ListTile(
-                leading:SvgPicture.asset('assets/images/bell.svg') ,
-                title:const Text('Notification',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 16)),
-
-                trailing:SizedBox(
-                  width: 40,height: 30,
-                  child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: Switch(
-                        activeColor: Colors.white,
-                        inactiveThumbColor: Colors.black,
-                        inactiveTrackColor: Colors.white,
-                        activeTrackColor: Colors.black,
-                        trackOutlineColor: state?const MaterialStatePropertyAll(Colors.black):const MaterialStatePropertyAll(Colors.white),
-                        splashRadius: 100,
-                        value: state, onChanged: (bool value) { setState(() {state=value;}); },)),
-                ),
-              ),
-            ),
+            buildCardProfileScreen(SvgPicture.asset('assets/images/bell.svg'),'Notification',),
             const SizedBox(height: 26,),
             InkWell(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>const AboutUsScreen()));
               },
-              child: Card( elevation: 2,shadowColor: Colors.grey,
-                child: ListTile(
-                  leading:SvgPicture.asset('assets/images/about_us.svg') ,
-                  title:const Text('About us',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 16)),
-
-                ),
+              child: buildCardProfileScreen(SvgPicture.asset('assets/images/about_us.svg') ,'About Us'),
               ),
-            ),
+
             const SizedBox(height: 26,),
             InkWell(
               onTap: () async{
                 await FirebaseAuth.instance.signOut();
                  Navigator.of(context).pushNamedAndRemoveUntil('welcome',( route)=>false);
-
               },
-              child: Card(
-                elevation: 2,shadowColor: Colors.grey,
-                child: ListTile(
-                  leading:SvgPicture.asset('assets/images/logout.svg') ,
-                  title:const Text('Logout',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 16)),
-
-                ),
-              ),
+              child: buildCardProfileScreen(SvgPicture.asset('assets/images/logout.svg') ,'Logout'),
             ),
-
           ],
         ),
       ),
     );
+  }
+
+  Card buildCardProfileScreen(SvgPicture image, String label ) {
+    return Card( elevation: 2,shadowColor: Colors.grey,
+            child: ListTile(
+              leading:image,
+              title: Text(label,style: const TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 16)),
+
+              trailing:label=="Notification"? SizedBox(
+                width: 40,height: 30,
+                child: FittedBox(
+                  fit: BoxFit.cover,
+                  child: Switch(
+                    activeColor: Colors.white,
+                    inactiveThumbColor: Colors.black,
+                    inactiveTrackColor: Colors.white,
+                    activeTrackColor: Colors.black,
+                    trackOutlineColor: state?const MaterialStatePropertyAll(Colors.black):const MaterialStatePropertyAll(Colors.white),
+                    splashRadius: 100,
+                    value: state, onChanged: (bool value) { setState(() {state=value;}); },),
+                ),
+              ):null,
+            ),
+          );
   }
 }

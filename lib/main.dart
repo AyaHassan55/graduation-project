@@ -2,11 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:grady/Presentation/Screens/MainPages/edit_profile_screen.dart';
-import 'package:grady/Presentation/Screens/MainPages/home_screen.dart';
-import 'package:grady/Presentation/Screens/authentication/welcome_screen.dart';
- import 'package:grady/Presentation/Screens/Authentication/login_screen.dart';
-import 'package:grady/Presentation/config/routes.dart';
+import 'package:grady/Presentation/config/routes.dart' as route;
 import 'package:grady/firebase_options.dart';
 
 // import 'Presentation/Screens/MainPages/camera_screen.dart';
@@ -20,18 +16,19 @@ import 'package:grady/firebase_options.dart';
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
-  runApp( MyApp(appRouter: AppRouter(),));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final AppRouter appRouter;
-  const MyApp({super.key, required this.appRouter});
+
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) =>   MaterialApp(
+  Widget build(BuildContext context) => const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FirebaseAuth.instance.currentUser==null?const LoginScreen(): const HomeScreen(),
-      // onGenerateRoute: appRouter.generateRoute,
+      // home: FirebaseAuth.instance.currentUser==null?const LoginScreen(): const HomeScreen(),
+       onGenerateRoute: route.controller,
+       initialRoute: route.Routes.splash,
     );
 }

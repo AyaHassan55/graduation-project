@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:grady/Presentation/Screens/MainPages/courses_Screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/leaderboard_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/profile_screen.dart';
+import 'package:grady/Presentation/Widgets/home_body_widget.dart';
+import 'package:grady/Presentation/Widgets/today_leader_board.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -18,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool on=false;
 
   final List<Widget> _screens = [const HomeScreen(), const LeaderBoardScreen(), const CourseScreen(), const ProfileScreen(),
-    // const CameraScreen()
+     // const CameraScreen()
   ];
   @override
   Widget build(BuildContext context) {
@@ -27,9 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body:_currentIndex == 0 ? Padding(
         padding: const EdgeInsets.only(top: 18.0,bottom: 18.0),
         child: ListView(
-          children: [
-            const HomeListTile(),
-            const Padding(
+          children: const [
+            HomeListTile(),
+            Padding(
               padding:  EdgeInsets.all(18.0),
               child:  Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -58,189 +60,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            HomeBodyWidget(),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: 120,height: 400,
-                child: Container(
-                  decoration:const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    shape: BoxShape.rectangle,
-                    color: Colors.white,
-                    boxShadow: [BoxShadow(color: Colors.grey,spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 2),),],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('  You wanna start recording ?',style: TextStyle(fontSize: 20,fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
-                      const Spacer(flex: 1,),
-                      Center(child:  SvgPicture.asset('assets/images/undraw_video_files_fu10 1.svg')),
-                      const Spacer(flex: 1,),
-                      const Text('  if you wanna start recording, please just press on\n  The button and start recording',style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
-                      const Spacer(flex: 1,),
-                      Center(
-                        child: ElevatedButton(onPressed: (){
-                          // pickImage();
-                        },
-                          style:const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(Colors.black),
-                          ),
-                          child: SvgPicture.asset('assets/images/camera-viewfinder 1.svg'),),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const Padding(
               padding:  EdgeInsets.all(8.0),
               child: Text("Today's Leaderboard",style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
             ),
             Padding(
-              padding: const EdgeInsets.all(18.0),
+              padding: EdgeInsets.all(18.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 27.0),
-                        child: Container(
-                          width: 100,height: 150,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(20),
-                            color:const Color.fromARGB(255, 239, 233, 233),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,children: [
-                            const Text('Doctor Name'),
-                            const SizedBox(height: 10,),
-                            CircularPercentIndicator(
-                              radius: 20,
-                              // radius: 120.0,
-                              lineWidth: 5.0,
-                              animation: true,
-                              percent: 0.7,
-                              progressColor: Colors.black,
-                              center: const Text("70.0%", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.0),
-                              ),
-
-                            ),
-                          ],),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 38.0),
-                        child: Container(
-                          width: 70,
-                          height: 60,
-                          decoration:const BoxDecoration(
-
-                            shape: BoxShape.circle,
-                            image:  DecorationImage(
-                                image:AssetImage('assets/images/boyy.png'),fit: BoxFit.cover ),
-
-
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 27.0),
-                        child: Container(
-                          width: 140,height: 180,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(20),
-                            color:const Color.fromARGB(255, 239, 233, 233),
-                          ),
-                          child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-                            const SizedBox(height: 12,),
-                            const Text('Doctor Name'),
-                            const SizedBox(height: 16,),
-                            CircularPercentIndicator(
-                              radius: 20,
-                              lineWidth: 5.0,
-                              animation: true,
-                              percent: 0.95,
-                              progressColor: Colors.black,
-                              center: const Text("95.0%", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.0),
-                              ),
-
-                            ),
-                          ],),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 68.0),
-                        child: Container(
-                          width: 80,
-                          height: 80,
-                          decoration:const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              alignment: Alignment.center,
-                              image:AssetImage('assets/images/cute_girl.png'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 27.0),
-                        child: Container(
-                          width: 100,height: 150,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(20),
-                              color:const Color.fromARGB(255, 239, 233, 233)
-                          ),
-                          child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-                            const Text('Doctor Name'),
-                            const SizedBox(height: 12,),
-                            CircularPercentIndicator(
-                              radius: 20,
-                              lineWidth: 5.0,
-                              animation: true,
-                              percent: 0.88,
-                              progressColor: Colors.black,
-                              center: const Text("88.0%", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.0),
-                              ),
-
-                            ),
-                          ],),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 38.0),
-                        child: Container(
-                          width: 70,
-                          height: 70,
-                          decoration:const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image:AssetImage('assets/images/bent.png'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                   ThirdPlaceLeaderBoard(),
+                   FirstPlaceLeaderBoard(),
+                   SecondPlaceLeaderBoard(),
                 ],
               ),
             ),
@@ -278,5 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 }
+
+
 
 
