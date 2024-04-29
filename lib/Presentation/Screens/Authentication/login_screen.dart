@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:grady/Presentation/Screens/Authentication/forget_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/home_screen.dart';
-import 'package:grady/Presentation/utilies/consts.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 
+
+import '../../../components/consts.dart';
 
 
 
@@ -21,20 +21,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isVisible = false;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    FirebaseAuth.instance
-        .authStateChanges()
-        .listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
