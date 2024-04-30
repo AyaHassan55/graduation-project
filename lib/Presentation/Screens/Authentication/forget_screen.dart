@@ -1,9 +1,14 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/verification_screen.dart';
-import 'package:grady/Presentation/utilies/consts.dart';
-import 'package:grady/Presentation/config/routes.dart' as route;
+
+import '../../../components/consts.dart';
+
+
+
+
 class ForgetScreen extends StatefulWidget {
   const ForgetScreen({super.key});
 
@@ -56,7 +61,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                     children: [
                       const Text('Create A New Account ?',style: TextStyle(color: Colors.grey)),
                       TextButton(onPressed:(){
-                        Navigator.pushNamed(context, route.Routes.signUp);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpScreen()));
                       } ,
                           child:const Text( 'Sign up',style: TextStyle(color: CupertinoColors.black,decoration: TextDecoration.underline))),
                     ],),

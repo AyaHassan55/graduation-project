@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grady/Presentation/utilies/consts.dart';
-import 'package:grady/Presentation/config/routes.dart' as route;
+import 'package:grady/components/consts.dart';
+
 import 'login_screen.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -144,8 +144,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text('Already have account ?',style: TextStyle(color: Colors.grey),),
-                    TextButton(onPressed: ()=>Navigator.pushNamed(context, route.Routes.login)
-                    , child: const Text('Log in',style: TextStyle(color: Colors.black,decoration: TextDecoration.underline),),),
+                    TextButton(onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginScreen()));
+                    }, child: const Text('Log in',style: TextStyle(color: Colors.black,decoration: TextDecoration.underline),),),
                   ],
                 ),
 

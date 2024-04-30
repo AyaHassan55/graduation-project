@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:grady/Presentation/Screens/Authentication/forget_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/home_screen.dart';
-import 'package:grady/Presentation/utilies/consts.dart';
-import 'package:grady/Presentation/config/routes.dart' as route;
+
+
+
+import '../../../components/consts.dart';
+
+
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -98,9 +103,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text('Login', style: TextStyle(color: Colors
                           .white),),)),
                 const SizedBox(height: 20,),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [const Text('Create A New Account ?', style: TextStyle(color: Colors.grey)),
-                  TextButton(onPressed: ()=> Navigator.pushNamed(context, route.Routes.signUp),
-                      child: const Text('Sign up', style: TextStyle(color: CupertinoColors.black, decoration: TextDecoration.underline))),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  const Text('Create A New Account ?',
+                      style: TextStyle(color: Colors.grey)),
+                  TextButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => const SignUpScreen()));
+                  },
+                      child: const Text('Sign up', style: TextStyle(
+                          color: CupertinoColors.black,
+                          decoration: TextDecoration.underline))),
                 ],),
 
               ],

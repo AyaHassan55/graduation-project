@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:grady/components/consts.dart';
 
-import '../../utilies/consts.dart';
 
-import 'package:grady/Presentation/config/routes.dart' as route;
 
 class ResetScreen extends StatefulWidget {
   const ResetScreen({super.key});
