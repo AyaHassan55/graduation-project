@@ -41,7 +41,7 @@ class Routes {
   Route<dynamic>controller(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return MaterialPageRoute(builder: (_) =>  SplashScreen(key: null,));
       case Routes.onboard:
         return MaterialPageRoute(builder: (_) => const BoardingScreen());
       case Routes.welcome:

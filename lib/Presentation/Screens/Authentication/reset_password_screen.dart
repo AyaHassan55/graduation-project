@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grady/components/consts.dart';
+import 'package:grady/Presentation/config/routes.dart' as route;
+import 'package:grady/Presentation/utilies/consts.dart';
 
 
 
