@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:grady/Presentation/config/routes.dart' as route;
+
+
+import 'package:grady/Presentation/utilies/custom_button.dart';
 class ToLogin extends StatefulWidget {
   const ToLogin({super.key});
 
@@ -24,9 +26,10 @@ class _ToLoginState extends State<ToLogin> {
                   const SizedBox(height: 40,),
                   const Text('Your password has been updated ',style: TextStyle(fontFamily: 'Poppins',color: Colors.black,fontWeight: FontWeight.bold)),
                   const Text('successfully',style: TextStyle(fontFamily: 'Poppins',color: Colors.black,fontWeight: FontWeight.bold),),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 98.0),
-                    child: SizedBox(width: double.infinity,height: 50,child: ElevatedButton(onPressed: (){},style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,backgroundColor: Colors.black,shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))), child:const Text('Login',style: TextStyle(color: Colors.white),),)),
+                  const Padding(
+                    padding:  EdgeInsets.only(top: 98.0),
+                    child: CustomElevatedButton(text: 'Login',pageName:'/login'),
+
                   ),
 
                 ],

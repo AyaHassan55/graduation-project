@@ -3,6 +3,8 @@ import 'package:onboarding/onboarding.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../authentication/welcome_screen.dart';
+import 'package:grady/Presentation/config/routes.dart' ;
+import 'package:go_router/go_router.dart';
 
 class BoardingScreen extends StatefulWidget {
   const BoardingScreen({Key? key}) : super(key: key);
@@ -209,7 +211,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                                 if (index < onboardingPagesList.length  - 1) {
                                   setState(() {index++;setIndex(index);});
                                 } else {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) =>const WelcomeScreen(),),);
+                                  context.go('/welcome');
                                 }
                               },
                               child:const Text('Next' , style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontFamily: 'Poppins'),),

@@ -1,17 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grady/Presentation/Screens/Authentication/forget_screen.dart';
-import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
-import 'package:grady/Presentation/Screens/MainPages/home_screen.dart';
+import 'package:grady/Presentation/utilies/consts.dart';
+import 'package:grady/Presentation/config/routes.dart'  ;
+import 'package:go_router/go_router.dart';
 
-
-
-import '../../../components/consts.dart';
-
-
-
-
+import 'package:grady/Presentation/utilies/custom_button.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -77,39 +71,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         : const Icon(Icons.visibility),
                   ),
                 ),
-                TextButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (
-                      context) => const ForgetScreen()));
-                },
-                    child: const Align(alignment: Alignment.bottomRight,
-                        child: Text('Forget Password ?',
-                          style: TextStyle(fontWeight: FontWeight.bold,
-                              color: Colors.black),))),
+                TextButton(onPressed: ()=> GoRouter.of(context).push('/forgetPassword'),
 
-                // const Align(alignment: Alignment.bottomRight,child:  TextButton(onPressed(){},child: )),
+                    child: const Align(alignment: Alignment.bottomRight, child: Text('Forget Password ?', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),))),
                 const SizedBox(height: 80,),
-                SizedBox(width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
-                    },
-                      style: ElevatedButton.styleFrom(shadowColor: Colors.grey,
-                          elevation: 5,
-                          backgroundColor: Colors.black,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(12)))),
-                      child: const Text('Login', style: TextStyle(color: Colors
-                          .white),),)),
+                const CustomElevatedButton(text: 'Login', pageName: '/home',),
+
                 const SizedBox(height: 20,),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   const Text('Create A New Account ?',
                       style: TextStyle(color: Colors.grey)),
-                  TextButton(onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => const SignUpScreen()));
-                  },
+                  TextButton(onPressed: ()=> context.go('/signUp'),
                       child: const Text('Sign up', style: TextStyle(
                           color: CupertinoColors.black,
                           decoration: TextDecoration.underline))),

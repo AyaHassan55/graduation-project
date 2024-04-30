@@ -8,3 +8,4 @@ OutlineInputBorder myInputBorder(){
   );
 }
 const appColor=Colors.black;
+const secColor=Colors.white;

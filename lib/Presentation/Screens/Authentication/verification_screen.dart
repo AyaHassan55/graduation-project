@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grady/Presentation/Widgets/build_pin_code.dart';
+import 'package:grady/Presentation/utilies/custom_button.dart';
+import 'package:grady/Presentation/config/routes.dart' ;
+import 'package:go_router/go_router.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -117,6 +120,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               },
                             );
                           }
+                          GoRouter.of(context).push('/resetPassword');
                         },
                         style: ElevatedButton.styleFrom(shadowColor: Colors.grey,
                             elevation: 5,

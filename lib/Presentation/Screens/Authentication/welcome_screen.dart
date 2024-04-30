@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:grady/Presentation/Screens/Authentication/login_screen.dart';
-import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
+import 'package:go_router/go_router.dart';
 
-
+import 'package:grady/Presentation/config/routes.dart' ;
+import 'package:grady/Presentation/utilies/custom_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -24,16 +24,16 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(height: 48,),
                 Center(child: SvgPicture.asset('assets/images/welcome.svg')),
                 const SizedBox(height: 20,),
-                SizedBox(width: double.infinity,height: 50,
-                    child: ElevatedButton(onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginScreen(),));
-                    },
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.black,shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))), child:const Text('Login',style: TextStyle(color: Colors.white),),)),
+                const CustomElevatedButton(text: 'Login', pageName: '/login',),
                 const SizedBox(height: 20,),
-                SizedBox(width: double.infinity,height: 45,child: ElevatedButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpScreen(),));
-                },style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,backgroundColor: Colors.white,side: const BorderSide(width: 1.0,color: Colors.black,strokeAlign: BorderSide.strokeAlignOutside,style: BorderStyle.solid),shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))), child:const Text('Register',style: TextStyle(color: Colors.black),),)),
-
+                SizedBox(width: double.infinity,height: 45,
+                  child: ElevatedButton(
+                    onPressed: ()=>GoRouter.of(context).push('/signUp'),
+                    style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,
+                        backgroundColor: Colors.white,
+                        side: const BorderSide(width: 1.0,color: Colors.black,strokeAlign: BorderSide.strokeAlignOutside,style: BorderStyle.solid),
+                        shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))),
+                    child:const Text('Register',style: TextStyle(color: Colors.black),),),),
               ],
             ),
           ),
@@ -42,3 +42,4 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 }
+

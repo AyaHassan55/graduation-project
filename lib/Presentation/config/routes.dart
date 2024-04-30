@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grady/Presentation/Screens/Authentication/forget_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/login_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/reset_password_screen.dart';
@@ -17,65 +17,114 @@ import 'package:grady/Presentation/Screens/MainPages/profile_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/report_screen.dart';
 import 'package:grady/Presentation/Screens/on_boarding/boarding_screen.dart';
 import 'package:grady/Presentation/Screens/splash/splash_screen.dart';
-class Routes {
-  static const String splash = '/';
-  static const String onboard = 'onboard';
-  static const String welcome = 'welcome';
-  static const String login = 'login';
-  static const String signUp = 'signUp';
-  static const String verification = 'verification';
-  static const String resetPassword = 'resetPassword';
-  static const String forgetPassword = 'forgetPassword';
-  static const String otpCode = 'otpCode';
-  static const String doneLogin = 'doneLogin';
-  static const String home = 'home';
-  static const String leaderBoard = 'leaderBoard';
-  static const String notification = 'notification';
-  static const String profile = 'profile';
-  static const String editProfile = 'editProfile';
-  static const String aboutUs = 'aboutUs';
-  static const String course = 'course';
-  static const String report = 'report';
-}
 
-  Route<dynamic>controller(RouteSettings settings) {
-    switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
-      case Routes.onboard:
-        return MaterialPageRoute(builder: (_) => const BoardingScreen());
-      case Routes.welcome:
-        return MaterialPageRoute(builder: (_) => const WelcomeScreen());
-      case Routes.login:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
-      case Routes.signUp:
-        return MaterialPageRoute(builder: (_) => const SignUpScreen());
-      case Routes.forgetPassword:
-        return MaterialPageRoute(builder: (_) => const ForgetScreen());
-      case Routes.verification:
-        return MaterialPageRoute(builder: (_) => const VerificationScreen());
-      case Routes.resetPassword:
-        return MaterialPageRoute(builder: (_) => const ResetScreen());
-      case Routes.doneLogin:
-        return MaterialPageRoute(builder: (_) => const ToLogin());
-      case Routes.home:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
-      case Routes.notification:
-        return MaterialPageRoute(builder: (_) => const NotificationScreen());
-      case Routes.leaderBoard:
-        return MaterialPageRoute(builder: (_) => const LeaderBoardScreen());
-      case Routes.profile:
-        return MaterialPageRoute(builder: (_) => const ProfileScreen());
-      case Routes.editProfile:
-        return MaterialPageRoute(builder: (_) => const EditProfile());
-      case Routes.aboutUs:
-        return MaterialPageRoute(builder: (_) => const AboutUsScreen());
-      case Routes.course:
-        return MaterialPageRoute(builder: (_) => const CourseScreen());
-      case Routes.report:
-        return MaterialPageRoute(builder: (_) => const ReportScreen());
-      default:
-        throw('This route name dose not exist');
-    }
-  }
+final GoRouter router = GoRouter(
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return const SplashScreen();
+      },
+     ),
+        GoRoute(
+          path: '/onboard',
+          builder: (BuildContext context, GoRouterState state) {
+            return const BoardingScreen();
+          },
+        ),
+        GoRoute(
+          path: '/welcome',
+          builder: (BuildContext context, GoRouterState state) {
+            return const WelcomeScreen();
+          },
+        ),
+        GoRoute(
+          path: '/login',
+          builder: (BuildContext context, GoRouterState state) {
+            return const LoginScreen();
+          },
+        ),GoRoute(
+          path: '/signUp',
+          builder: (BuildContext context, GoRouterState state) {
+            return const SignUpScreen();
+          },
+        ),GoRoute(
+          path: '/verification',
+          builder: (BuildContext context, GoRouterState state) {
+            return const VerificationScreen();
+          },
+        ),GoRoute(
+          path: '/resetPassword',
+          builder: (BuildContext context, GoRouterState state) {
+            return const ResetScreen();
+          },
+        ),
+        GoRoute(
+          path: '/forgetPassword',
+          builder: (BuildContext context, GoRouterState state) {
+            return const ForgetScreen();
+          },
+        ),
+        GoRoute(
+          path: '/doneLogin',
+          builder: (BuildContext context, GoRouterState state) {
+            return const ToLogin();
+          },
+        ),
+        GoRoute(
+          path: '/home',
+          builder: (BuildContext context, GoRouterState state) {
+            return const HomeScreen();
+          },
+        ),
+        GoRoute(
+          path: '/notification',
+          builder: (BuildContext context, GoRouterState state) {
+            return const NotificationScreen();
+          },
+        ),
+        GoRoute(
+          path: '/leader',
+          builder: (BuildContext context, GoRouterState state) {
+            return const LeaderBoardScreen();
+          },
+        ),
+        GoRoute(
+          path: '/profile',
+          builder: (BuildContext context, GoRouterState state) {
+            return const ProfileScreen();
+          },
+        ),
+        GoRoute(
+          path: '/editProfile',
+          builder: (BuildContext context, GoRouterState state) {
+            return const EditProfile();
+          },
+        ),
+        GoRoute(
+          path: '/courses',
+          builder: (BuildContext context, GoRouterState state) {
+            return const CourseScreen();
+          },
+        ),
+        GoRoute(
+          path: '/aboutUS',
+          builder: (BuildContext context, GoRouterState state) {
+            return const AboutUsScreen();
+          },
+        ),
+        GoRoute(
+          path: '/report',
+          builder: (BuildContext context, GoRouterState state) {
+            return const ReportScreen();
+          },
+        ),
+        // GoRoute(
+        //   path: 'camera',
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const CourseScreen();
+        //   },
+        // ),
 
+  ],
+);

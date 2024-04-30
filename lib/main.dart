@@ -1,13 +1,13 @@
-// import 'package:camera/camera.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+ import 'package:camera/camera.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:grady/Presentation/config/routes.dart' as route;
+
+import 'package:grady/Presentation/config/routes.dart';
 import 'package:grady/firebase_options.dart';
 
 // import 'Presentation/Screens/MainPages/camera_screen.dart';
-
-// List<CameraDescription>cameras=[];
+ List<CameraDescription>cameras=[];
 // Future <void> main() async{
 //   WidgetsFlutterBinding.ensureInitialized();
 //   cameras=await availableCameras();
@@ -25,10 +25,11 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) => const MaterialApp(
+  Widget build(BuildContext context) =>MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      // home: FirebaseAuth.instance.currentUser==null?const LoginScreen(): const HomeScreen(),
-       onGenerateRoute: route.controller,
-       initialRoute: route.Routes.splash,
+       routerConfig: router,
+       // home: WelcomeScreen(),
+       // home: FirebaseAuth.instance.currentUser==null?const LoginScreen(): const HomeScreen(),
+
     );
 }
