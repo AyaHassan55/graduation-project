@@ -1,8 +1,9 @@
 import 'dart:async';
+
 import 'package:grady/Presentation/Screens/on_boarding/boarding_screen.dart';
+import 'package:grady/Presentation/config/routes.dart' as route;
 import 'package:flutter/material.dart';
-import 'package:grady/Presentation/config/routes.dart';
-import 'package:go_router/go_router.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -14,11 +15,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-        const Duration(seconds:10),
-            (){
-          GoRouter.of(context).push('/onboard');
-        }
+    startTimer();
+  }
+
+  void startTimer() {
+    Timer(const Duration(seconds: 10), () {
+      navigateToBoardingScreen();
+    });
+  }
+
+  void navigateToBoardingScreen() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const BoardingScreen()),
     );
   }
 

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grady/Presentation/config/routes.dart' ;
+import 'package:grady/Presentation/config/routes.dart' as route;
 import 'package:grady/Presentation/utilies/consts.dart';
-import 'package:grady/Presentation/utilies/custom_button.dart';
-import 'package:go_router/go_router.dart';
 
 
 
@@ -55,7 +53,8 @@ class _ResetScreenState extends State<ResetScreen> {
                     ),
                   ),
                   const SizedBox(height: 160,),
-                  const CustomElevatedButton(text:  'Reset password', pageName: '/doneLogin')
+                  SizedBox(width: double.infinity,height: 50,child: ElevatedButton(onPressed: (){},style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,backgroundColor: Colors.black,shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))), child:const Text('Reset password',style: TextStyle(color: Colors.white),),)),
+
                 ],
               ),
             ),
