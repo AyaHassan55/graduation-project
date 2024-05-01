@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 
 class HomeBodyWidget extends StatelessWidget {
@@ -34,9 +35,8 @@ class HomeBodyWidget extends StatelessWidget {
               const Text('  if you wanna start recording, please just press on\n  The button and start recording',style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
               const Spacer(flex: 1,),
               Center(
-                child: ElevatedButton(onPressed: (){
-                  // pickImage();
-                },
+                child: ElevatedButton(onPressed: ()=> GoRouter.of(context).push('/camera'),
+
                   style:const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.black),
                   ),

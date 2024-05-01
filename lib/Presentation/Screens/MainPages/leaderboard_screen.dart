@@ -34,15 +34,24 @@ class LeaderBoardScreen extends StatelessWidget {
                 child: Padding(
                   padding:const EdgeInsets.all(8.0),
                   child: ListTile(
-                    leading:const CircleAvatar(radius:30,backgroundImage: AssetImage('assets/images/bent.png',),backgroundColor: Colors.transparent,),
-                    title:const Text('Doctor Name',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 15)),
+                    leading:Container(
+                      height: 60,width: 60,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/girll.png'), // Path to your SVG file
+                            fit: BoxFit.cover, // Adjust the fit as needed
+                          )
+                      ),
+                    ),
+                    title:const Text('Aya Hassan',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 15)),
                     trailing:CircularPercentIndicator(
                       radius: 20,
                       lineWidth: 5.0,
                       animation: true,
                       percent: 0.88,
                       progressColor: Colors.black,
-                      center: const Text("88.0%", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.0),
+                      center: const Text("95.0%", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.0),
                       ),
 
                     ),

@@ -1,55 +1,138 @@
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grady/Presentation/Widgets/custom_text_field.dart';
-import 'package:grady/Presentation/utilies/custom_button.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_state.dart';
 
-class CustomSignUpForm extends StatelessWidget
+class CustomSignUpForm extends StatefulWidget
 {
   const CustomSignUpForm({super.key});
 
   @override
+  State<CustomSignUpForm> createState() => _CustomSignUpFormState();
+}
+
+class _CustomSignUpFormState extends State<CustomSignUpForm> {
+  // final TextEditingController controller =  TextEditingController();
+
+
+ bool success =false;
+  @override
   Widget build(BuildContext context) {
     return  BlocConsumer<AuthCubit, AuthState>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
-    return Form(child: Column(
+       listener: (context, state)
+    {
+      if (state is SignUpSuccessState) {
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.success,
+          animType: AnimType.rightSlide,
+          headerAnimationLoop: false,
+          title: 'Done',
+          desc: 'Your Account is created Successfully !',
+          btnOkOnPress: () {
+            context.go('/sub');
+          },
+          btnOkColor: Colors.green,
+        ).show();
+
+      } else if (state is SignUpFailureState) {
+        state.errMessage == 'The password provided is too weak.'
+            ? AwesomeDialog(
+          context: context,
+          dialogType: DialogType.warning,
+          animType: AnimType.rightSlide,
+          headerAnimationLoop: false,
+          desc: state.errMessage,
+          btnOkOnPress: () {},
+          btnOkColor: Colors.orangeAccent,
+        ).show() : AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          animType: AnimType.rightSlide,
+          headerAnimationLoop: false,
+          title: 'Error',
+          desc:
+          state.errMessage,
+          btnOkOnPress: () {},
+          btnOkColor: Colors.red,
+        ).show();
+      }
+    },
+    builder: (context, state) {
+    AuthCubit authCubit=BlocProvider.of<AuthCubit>(context);
+    return Form(
+      key: authCubit.signupFormKey,
+      child: Column(
       children: [
         CustomTextField(label:'Enter Your FullName', icon:  const Icon(Icons.person_2_outlined,color:Colors.black,),
           onChanged: (String name) {
-          BlocProvider.of<AuthCubit>(context).fullName=name;
-          }
+            authCubit.fullName=name;
+          },
+            keyboardType:TextInputType.name
         ),
         const SizedBox(height: 22,),
         CustomTextField(label:'Enter Your Phone', icon:  const Icon(Icons.local_phone_rounded,color:Colors.black,) ,
             onChanged: (String phone) {
-              BlocProvider.of<AuthCubit>(context).phone=phone;
-            }),
+              authCubit.phone=phone;
+            },
+            keyboardType:TextInputType.phone
+        ),
         const SizedBox(height: 22,),
-
         CustomTextField(label:'Enter Your Email', icon:  const Icon(Icons.email_outlined,color:Colors.black,) ,
             onChanged: (String emailAddress) {
-          BlocProvider.of<AuthCubit>(context).email=emailAddress;
-            }),
+              authCubit.email=emailAddress;
+            },keyboardType:TextInputType.emailAddress ),
         const SizedBox(height: 22,),
+        CustomTextField(
+          label: 'Enter Your Password',
+          icon:  const Icon(Icons.lock_outline_rounded,color:Colors.black,),
+          suffixIcon: IconButton(
+            icon: Icon(authCubit.obscurePasswordTextValue == true ? Icons.visibility_outlined : Icons.visibility_off_outlined,),
+            onPressed: () {
+              authCubit.obscurePasswordText();
+            },
+          ),
+          obscureText: authCubit.obscurePasswordTextValue,
+          onChanged: (password) {
+            authCubit.password=password;
+          },
+        ),
 
-        CustomTextField(label:'Enter Your Password', icon:  const Icon(Icons.lock_outline_rounded,color:Colors.black,) ,onChanged: (String password) {
-          BlocProvider.of<AuthCubit>(context).password=password;
-        }),
         const SizedBox(height: 22,),
+        CustomTextField(
 
-        CustomTextField(label:'Confirm Password', icon:  const Icon(Icons.lock_outline_rounded,color:Colors.black,) ,onChanged: (String password) {}),
+          label: 'Confirm Password',
+          icon:  const Icon(Icons.lock_outline_rounded,color:Colors.black,),
+          suffixIcon: IconButton(
+            icon: Icon(
+              authCubit.obscureConfirmPasswordTextValue == true
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+            ),
+            onPressed: () {
+              authCubit.obscureConfirmPasswordText();
+            },
+          ),
+          obscureText: authCubit.obscureConfirmPasswordTextValue,
+          onChanged: (password) {
+            authCubit.confirmPassword = password;
+          },
+        ),
         const SizedBox(height: 80,),
+        state is SignUpLoadingState? const CircularProgressIndicator(color: Colors.black,):
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: ElevatedButton(onPressed: () {
-            BlocProvider.of<AuthCubit>(context).signUpWithEmailAndPassword();
-            GoRouter.of(context).push('/home');
+          child: ElevatedButton(
+            onPressed: () {
+            if(authCubit.signupFormKey.currentState!.validate()){
+               authCubit.signUpWithEmailAndPassword();
+
+            }
           },
             style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,backgroundColor: Colors.black,shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))),
             child:const Text('Sign Up',style:  TextStyle(color: Colors.white),),),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grady/Presentation/Screens/MainPages/camera_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/courses_Screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/leaderboard_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/profile_screen.dart';
 import 'package:grady/Presentation/Widgets/home_body_widget.dart';
 import 'package:grady/Presentation/Widgets/today_leader_board.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-
 import '../../Widgets/home_list_tile.dart';
+import 'package:intl/intl.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   @override
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool on=false;
 
   final List<Widget> _screens = [const HomeScreen(), const LeaderBoardScreen(), const CourseScreen(), const ProfileScreen(),
-     // const CameraScreen()
+      CameraScreen()
   ];
   @override
   Widget build(BuildContext context) {
@@ -29,14 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
       body:_currentIndex == 0 ? Padding(
         padding: const EdgeInsets.only(top: 18.0,bottom: 18.0),
         child: ListView(
-          children: const [
-            HomeListTile(),
+          children:  [
+            const HomeListTile(),
             Padding(
-              padding:  EdgeInsets.all(18.0),
+              padding:  const EdgeInsets.all(18.0),
               child:  Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(right: 90.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,24 +48,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(right: 68.0),
+                    padding: const EdgeInsets.only(right: 68.0),
                     child: Row (
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Sunday 10 March',style: TextStyle(fontFamily:'Poppins',fontWeight: FontWeight.bold),),
-                        Text('12:00 AM',style: TextStyle(fontFamily: 'Poppins',color: Colors.black,fontWeight: FontWeight.bold),),
+                        Text(DateFormat('EEEE d MMM').format(DateTime.now()),style: const TextStyle(fontFamily:'Poppins',fontWeight: FontWeight.bold),),
+                         Text(DateFormat('hh:mm a').format(DateTime.now()),style:const TextStyle(fontFamily: 'Poppins',color: Colors.black,fontWeight: FontWeight.bold),),
                       ],
                     ),
                   )
                 ],
               ),
             ),
-            HomeBodyWidget(),
-            Padding(
+            const HomeBodyWidget(),
+            const Padding(
               padding:  EdgeInsets.all(8.0),
               child: Text("Today's Leaderboard",style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.bold),),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(18.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ClipRRect(
           borderRadius:const BorderRadius.all(Radius.circular(25)),
           child: SalomonBottomBar(
-            margin:const EdgeInsets.all(7),
+            // margin:const EdgeInsets.all(7),
             backgroundColor: Colors.black,
             selectedColorOpacity: 0.99,
             currentIndex: _currentIndex,

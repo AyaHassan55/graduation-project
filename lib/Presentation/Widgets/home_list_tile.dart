@@ -16,8 +16,8 @@ class HomeListTile extends StatelessWidget {
         decoration:const BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
-            image:AssetImage('assets/images/profile_aya.png'),
-            fit: BoxFit.cover,
+            image:AssetImage('assets/images/girll.png'),
+
           ),
         ),
       ),

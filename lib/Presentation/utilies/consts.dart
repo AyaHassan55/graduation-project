@@ -7,5 +7,3 @@ OutlineInputBorder myInputBorder(){
     borderSide: BorderSide(color: Colors.black),
   );
 }
-const appColor=Colors.black;
-const secColor=Colors.white;

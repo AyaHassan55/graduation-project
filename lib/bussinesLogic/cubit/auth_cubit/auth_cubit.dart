@@ -1,32 +1,75 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
-  late String? fullName;
-  late String? phone;
-  late String? email;
-  late String? password;
-
+   AuthCubit() : super(AuthInitial());
+   String? fullName;
+   String? phone;
+   String? email;
+   String? password;
+   String? confirmPassword;
+   bool? obscurePasswordTextValue = true;
+   bool? obscureConfirmPasswordTextValue = true;
+   GlobalKey<FormState> signupFormKey = GlobalKey();
+   GlobalKey<FormState> signInFormKey = GlobalKey();
   signUpWithEmailAndPassword( ) async{
     try {
       emit(SignUpLoadingState());
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email!,
         password: password!,
       );
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        emit(SignUpFailureState(errMessage:'The password provided is too weak.'));
-
+        emit(SignUpFailureState(errMessage: 'The password provided is too weak.'));
       } else if (e.code == 'email-already-in-use') {
-        emit(SignUpFailureState(errMessage:'The account already exists for that email.'));
-
+        emit(SignUpFailureState(errMessage: 'The account already exists for that email.'));
       }
     } catch (e) {
-      emit(SignUpFailureState(errMessage:e.toString()));
+      log('may be we are the problem $e');
+      emit(SignUpFailureState(errMessage: e.toString()));
     }
   }
-}
+   void obscurePasswordText() {
+     if (obscurePasswordTextValue == true) {
+       obscurePasswordTextValue = false;
+     } else {
+       obscurePasswordTextValue = true;
+     }
+     emit(ObscurePasswordTextUpdateState());
+   }
+   void obscureConfirmPasswordText() {
+     if (obscureConfirmPasswordTextValue == true) {
+       obscureConfirmPasswordTextValue = false;
+     } else {
+       obscureConfirmPasswordTextValue = true;
+     }
+     emit(ObscureConfirmPasswordTextUpdateState());
+   }
+   Future<void>signInWithEmailAndPassword()async{
+     try {
+       emit(SignInLoadingState());
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+           email: email!,
+           password: password!
+       );
+        emit(SignInSuccessState());
+     } on FirebaseAuthException catch (e) {
+       if (e.code == 'user-not-found') {
+         emit(SignInFailureState(errorMessage: 'No user found for that email.'));
+
+       } else if (e.code == 'wrong-password') {
+         emit(SignInFailureState(errorMessage: 'Wrong password provided for that user.'));
+       }else {
+         emit(SignInFailureState(errorMessage: 'Check your Email and password!'));
+     }
+   }catch(e){
+       emit(SignInFailureState(errorMessage: e.toString()));
+     }
+
+}}

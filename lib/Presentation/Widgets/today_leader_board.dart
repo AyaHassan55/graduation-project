@@ -22,7 +22,7 @@ class SecondPlaceLeaderBoard extends StatelessWidget {
                 color:const Color.fromARGB(255, 239, 233, 233)
             ),
             child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-              const Text('Doctor Name'),
+              const Text('Omar'),
               const SizedBox(height: 12,),
               CircularPercentIndicator(
                 radius: 20,
@@ -37,19 +37,16 @@ class SecondPlaceLeaderBoard extends StatelessWidget {
             ],),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 38.0),
-          child: Container(
-            width: 70,
-            height: 70,
-            decoration:const BoxDecoration(
+         Padding(
+          padding:const  EdgeInsets.only(bottom: 38.0),
+          child: Container(height: 60,width: 60,
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image:AssetImage('assets/images/bent.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+              image: AssetImage('assets/images/man.png'), // Path to your SVG file
+              fit: BoxFit.cover, // Adjust the fit as needed
           ),
+        ),),
         ),
       ],
     );
@@ -76,8 +73,8 @@ class FirstPlaceLeaderBoard extends StatelessWidget {
               color:const Color.fromARGB(255, 239, 233, 233),
             ),
             child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-              const SizedBox(height: 12,),
-              const Text('Doctor Name'),
+              const SizedBox(height: 32,),
+              const Text('Aya Hassan '),
               const SizedBox(height: 16,),
               CircularPercentIndicator(
                 radius: 20,
@@ -92,20 +89,18 @@ class FirstPlaceLeaderBoard extends StatelessWidget {
             ],),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 68.0),
-          child: Container(
-            width: 80,
-            height: 80,
-            decoration:const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                alignment: Alignment.center,
-                image:AssetImage('assets/images/cute_girl.png'),
-                fit: BoxFit.cover,
-              ),
+         Padding(
+          padding:const  EdgeInsets.only(bottom: 48.0,),
+          child:Container(
+            height: 80,width: 80,
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/girll.png'), // Path to your SVG file
+                  fit: BoxFit.cover, // Adjust the fit as needed
+                )
             ),
-          ),
+          )
         ),
       ],
     );
@@ -133,7 +128,7 @@ class ThirdPlaceLeaderBoard extends StatelessWidget {
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,children: [
-              const Text('Doctor Name'),
+              const Text('Amina'),
               const SizedBox(height: 10,),
               CircularPercentIndicator(
                 radius: 20,
@@ -149,20 +144,18 @@ class ThirdPlaceLeaderBoard extends StatelessWidget {
             ],),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 38.0),
+         Padding(
+          padding:const  EdgeInsets.only(bottom: 38.0),
           child: Container(
-            width: 70,
-            height: 60,
-            decoration:const BoxDecoration(
-
+            height: 60,width: 60,
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              image:  DecorationImage(
-                  image:AssetImage('assets/images/boyy.png'),fit: BoxFit.cover ),
-
-
+              image: DecorationImage(
+                image: AssetImage('assets/images/girl2.png'), // Path to your SVG file
+                fit: BoxFit.cover, // Adjust the fit as needed
+              )
             ),
-          ),
+          )
         ),
       ],
     );

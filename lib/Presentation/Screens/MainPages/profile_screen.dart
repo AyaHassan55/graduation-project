@@ -1,20 +1,16 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:grady/Presentation/Screens/Authentication/welcome_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grady/Presentation/Screens/MainPages/about_us_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/edit_profile_screen.dart';
 
-
-
+import '../../config/routes.dart';
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
-
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
-
 class _ProfileScreenState extends State<ProfileScreen> {
   bool state=false;
   @override
@@ -23,7 +19,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title:const Text('Profile',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 20)),
         centerTitle: true,
-        leading:const Icon(Icons.arrow_back_ios,color: Colors.black,),
+        leading:InkWell(onTap: (){router.pop();router.go('/home');},child: const Icon(Icons.arrow_back_ios,color: Colors.black,)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -31,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             ListTile(
               leading:
-              Container(width: 70, height: 70, decoration:const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image:AssetImage('assets/images/profile_aya.png'), fit: BoxFit.cover,),)),
+              Container(width: 90, height: 150, decoration:const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image:AssetImage('assets/images/girll.png'), ),)),
               title:const Text('Aya Hassan',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 20)),
               subtitle:const Text('Flutter Developer',style: TextStyle(fontFamily: 'Poppins',fontSize: 16)),
               trailing:InkWell(onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>const EditProfile()))
@@ -40,18 +36,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 56,),
             buildCardProfileScreen(SvgPicture.asset('assets/images/bell.svg'),'Notification',),
             const SizedBox(height: 26,),
+            buildCardProfileScreen(SvgPicture.asset('assets/images/edit subject.svg'),'Edit Subject',),
+            const SizedBox(height: 26,),
             InkWell(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const AboutUsScreen()));
+
+                context.go('about us');
               },
               child: buildCardProfileScreen(SvgPicture.asset('assets/images/about_us.svg') ,'About Us'),
               ),
 
             const SizedBox(height: 26,),
             InkWell(
-              onTap: () async{
-                await FirebaseAuth.instance.signOut();
-                 Navigator.of(context).pushNamedAndRemoveUntil('welcome',( route)=>false);
+              onTap: () {
+                 FirebaseAuth.instance.signOut();
+                  router.pop();
+                  router.go('/login');
               },
               child: buildCardProfileScreen(SvgPicture.asset('assets/images/logout.svg') ,'Logout'),
             ),

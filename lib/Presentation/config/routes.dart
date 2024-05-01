@@ -5,6 +5,7 @@ import 'package:grady/Presentation/Screens/Authentication/forget_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/login_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/reset_password_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
+import 'package:grady/Presentation/Screens/Authentication/subject_name_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/to_login_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/verification_screen.dart';
 import 'package:grady/Presentation/Screens/Authentication/welcome_screen.dart';
@@ -20,6 +21,8 @@ import 'package:grady/Presentation/Screens/on_boarding/boarding_screen.dart';
 import 'package:grady/Presentation/Screens/splash/splash_screen.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:grady/core/services/service_locator.dart';
+
+import '../Screens/MainPages/camera_screen.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -45,19 +48,27 @@ final GoRouter router = GoRouter(
       path: '/login',
       builder: (BuildContext context, GoRouterState state) {
         return BlocProvider(
-          create: (context) => getIt<AuthCubit>(),
+          create: (context) => AuthCubit(),
           child:const LoginScreen(),
         );
       },
-    ), GoRoute(
+    ),
+    GoRoute(
       path: '/signUp',
       builder: (BuildContext context, GoRouterState state) {
         return BlocProvider(
-          create: (context) => getIt<AuthCubit>(),
+          create: (context) => AuthCubit(),
           child: const SignUpScreen(),
         );
       },
-    ), GoRoute(
+    ),
+    GoRoute(
+      path: '/sub',
+      builder: (BuildContext context, GoRouterState state) {
+        return const SubjectName();
+      },
+    ),
+    GoRoute(
       path: '/verification',
       builder: (BuildContext context, GoRouterState state) {
         return const VerificationScreen();
@@ -128,12 +139,12 @@ final GoRouter router = GoRouter(
         return const ReportScreen();
       },
     ),
-    // GoRoute(
-    //   path: 'camera',
-    //   builder: (BuildContext context, GoRouterState state) {
-    //     return const CourseScreen();
-    //   },
-    // ),
+    GoRoute(
+      path: '/camera',
+      builder: (BuildContext context, GoRouterState state) {
+        return  CameraScreen();
+      },
+    ),
 
 
   ],

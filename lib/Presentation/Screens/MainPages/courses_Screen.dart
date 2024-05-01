@@ -58,9 +58,7 @@ class _CourseScreenState extends State<CourseScreen> {
                     child: ListTile(leading:SvgPicture.asset('assets/images/report_img.svg'),title: Text(courses.bodyOne)),
                   ),
                   const SizedBox(height: 17,),
-                  Card(elevation: 2,
-                    child: ListTile(leading:SvgPicture.asset('assets/images/about_us.svg'),title: Text(courses.bodyTwo)),
-                  ),
+
                 ],
               ),
             ));

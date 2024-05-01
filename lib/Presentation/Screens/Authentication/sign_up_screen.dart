@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grady/Presentation/Widgets/custom_sign_up_form.dart';
+
+import '../../utilies/appStrings.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -21,9 +23,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Lets 's Get Started",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 36),),
+                const Text(labelSignUp,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 36),),
                 const SizedBox(height: 15,),
-                const Text("Create an account to get all features",style: TextStyle(color: Colors.grey),),
+                const Text(subTitleSignUp,style: TextStyle(color: Colors.grey),),
                 const SizedBox(height: 42,),
                 const CustomSignUpForm(),
                 const SizedBox(height: 20,),
