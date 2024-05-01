@@ -2,16 +2,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
-import 'package:grady/Presentation/Screens/Authentication/verification_screen.dart';
-import 'package:grady/Presentation/config/routes.dart' as route;
 import 'package:grady/Presentation/utilies/consts.dart';
+import 'package:grady/Presentation/utilies/custom_button.dart';
 class ForgetScreen extends StatefulWidget {
   const ForgetScreen({super.key});
-
   @override
   State<ForgetScreen> createState() => _ForgetScreenState();
 }
-
 class _ForgetScreenState extends State<ForgetScreen> {
   @override
   Widget build(BuildContext context) {
@@ -49,14 +46,14 @@ class _ForgetScreenState extends State<ForgetScreen> {
                     ),
                   ),
                   const SizedBox(height: 160,),
-                  SizedBox(width: double.infinity,height: 50,child: ElevatedButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const VerificationScreen()));
-                  },style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,backgroundColor: Colors.black,shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))), child:const Text('Continue',style: TextStyle(color: Colors.white),),)),
+                  const CustomElevatedButton(text: 'Continue', pageName: '/verification'),
                   const SizedBox(height: 20,),
                   Row(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text('Create A New Account ?',style: TextStyle(color: Colors.grey)),
-                      TextButton(onPressed:()=> Navigator.pushNamed(context, route.Routes.signUp),
+                      TextButton(onPressed:(){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpScreen()));
+                      } ,
                           child:const Text( 'Sign up',style: TextStyle(color: CupertinoColors.black,decoration: TextDecoration.underline))),
                     ],),
                 ],
