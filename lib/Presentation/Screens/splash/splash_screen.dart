@@ -1,8 +1,10 @@
 import 'dart:async';
-
-import 'package:grady/Presentation/Screens/on_boarding/boarding_screen.dart';
-import 'package:grady/Presentation/config/routes.dart' as route;
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:grady/core/database/cache/chash_helper.dart';
+import 'package:grady/core/services/service_locator.dart';
+
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,25 +14,23 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     super.initState();
-    startTimer();
-  }
 
-  void startTimer() {
-    Timer(const Duration(seconds: 10), () {
-      navigateToBoardingScreen();
-    });
+    bool isOnBoardingVisited = getIt<CacheHelper>().getData(key: "isOnBoardingVisited") ?? false;
+    if(isOnBoardingVisited == true){
+      delayedNavigate(context, "/login");
+    }else{
+      delayedNavigate(context, "/onboard");
+    }
+
   }
 
   void navigateToBoardingScreen() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const BoardingScreen()),
-    );
-  }
 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,4 +41,13 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+}
+void delayedNavigate(context, path) {
+  Future.delayed(
+    const Duration(seconds: 2),
+        () {
+      GoRouter.of(context).push(path);
+
+    },
+  );
 }

@@ -42,6 +42,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       SnackBar(
         content: Text(message!),
         duration: const Duration(seconds: 2),
+        backgroundColor: Colors.green,
       ),
     );
   }

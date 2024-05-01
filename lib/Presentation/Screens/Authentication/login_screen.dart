@@ -2,7 +2,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grady/Presentation/utilies/consts.dart';
-import 'package:grady/Presentation/config/routes.dart' as route;
+
+import 'package:go_router/go_router.dart';
+
+import 'package:grady/Presentation/utilies/custom_button.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -68,25 +71,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         : const Icon(Icons.visibility),
                   ),
                 ),
-                TextButton(onPressed: ()=> Navigator.pushNamed(context, route.Routes.forgetPassword),
+                TextButton(onPressed: ()=> GoRouter.of(context).push('/forgetPassword'),
 
-                    child: const Align(alignment: Alignment.bottomRight,
-                        child: Text('Forget Password ?',
-                          style: TextStyle(fontWeight: FontWeight.bold,
-                              color: Colors.black),))),
-
-                // const Align(alignment: Alignment.bottomRight,child:  TextButton(onPressed(){},child: )),
+                    child: const Align(alignment: Alignment.bottomRight, child: Text('Forget Password ?', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),))),
                 const SizedBox(height: 80,),
-                SizedBox(width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(onPressed: ()=>Navigator.pushNamed(context, route.Routes.home),
-                      style: ElevatedButton.styleFrom(shadowColor: Colors.grey, elevation: 5, backgroundColor: Colors.black, shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))),
-                      child: const Text('Login', style: TextStyle(color: Colors.white),),)),
+                const CustomElevatedButton(text: 'Login', pageName: '/home',),
+
                 const SizedBox(height: 20,),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   const Text('Create A New Account ?',
                       style: TextStyle(color: Colors.grey)),
-                  TextButton(onPressed: ()=> Navigator.pushNamed(context, route.Routes.signUp),
+                  TextButton(onPressed: ()=> context.go('/signUp'),
                       child: const Text('Sign up', style: TextStyle(
                           color: CupertinoColors.black,
                           decoration: TextDecoration.underline))),

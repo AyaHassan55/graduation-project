@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:grady/Presentation/config/routes.dart' ;
 import 'package:grady/Presentation/utilies/custom_button.dart';
+import 'package:grady/core/database/cache/chash_helper.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -28,12 +29,16 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(height: 20,),
                 SizedBox(width: double.infinity,height: 45,
                   child: ElevatedButton(
-                    onPressed: ()=>GoRouter.of(context).push('/signUp'),
-                    style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,
-                        backgroundColor: Colors.white,
-                        side: const BorderSide(width: 1.0,color: Colors.black,strokeAlign: BorderSide.strokeAlignOutside,style: BorderStyle.solid),
-                        shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))),
-                    child:const Text('Register',style: TextStyle(color: Colors.black),),),),
+                    onPressed: (){
+                      GoRouter.of(context).push('/signUp');
+
+                      },
+                      style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,
+                      backgroundColor: Colors.white,
+                      side: const BorderSide(width: 1.0,color: Colors.black,strokeAlign: BorderSide.strokeAlignOutside,style: BorderStyle.solid),
+                      shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))),
+                      child:const Text('Sign Up',style: TextStyle(color:
+                     Colors.black),),),),
               ],
             ),
           ),

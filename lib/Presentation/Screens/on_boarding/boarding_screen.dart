@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:grady/core/services/service_locator.dart';
 import 'package:onboarding/onboarding.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../../core/database/cache/chash_helper.dart';
 import '../authentication/welcome_screen.dart';
 import 'package:grady/Presentation/config/routes.dart' ;
 import 'package:go_router/go_router.dart';
@@ -211,6 +213,8 @@ class _BoardingScreenState extends State<BoardingScreen> {
                                 if (index < onboardingPagesList.length  - 1) {
                                   setState(() {index++;setIndex(index);});
                                 } else {
+                                  getIt<CacheHelper>().saveData(key: 'isOnBoardingVisited', value: true);
+                                  print('ayaaaaaaaaaaaaaaaaaa');
                                   context.go('/welcome');
                                 }
                               },
