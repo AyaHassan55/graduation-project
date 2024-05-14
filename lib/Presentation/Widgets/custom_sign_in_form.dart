@@ -20,12 +20,19 @@ class CustomSignInForm extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignInSuccessState) {
-          log('May be i am the problemmmmm');
-            router.go('/home');
+          FirebaseAuth.instance.currentUser!.emailVerified? router.go('/home'):AwesomeDialog(
+            context: context,
+            dialogType: DialogType.warning,
+            animType: AnimType.rightSlide,
+            headerAnimationLoop: false,
+            desc: 'please verify your account',
+            btnOkOnPress: () {},
+            btnOkColor: Colors.orangeAccent,
+          ).show();
 
 
         } else if (state is SignInFailureState) {
-          log('wronggggPAssswordddddddd');
+
           AwesomeDialog(
             context: context,
             dialogType: DialogType.error,
