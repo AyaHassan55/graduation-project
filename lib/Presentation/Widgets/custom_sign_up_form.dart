@@ -32,9 +32,9 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           animType: AnimType.rightSlide,
           headerAnimationLoop: false,
           title: 'Done',
-          desc: 'Your Account is created Successfully !',
+          desc: ' Successfully , check your email to verify your account!',
           btnOkOnPress: () {
-            context.go('/sub');
+            context.go('/login');
           },
           btnOkColor: Colors.green,
         ).show();

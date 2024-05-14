@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grady/Presentation/Screens/Authentication/sign_up_screen.dart';
+import 'package:grady/Presentation/Widgets/custom_forget_password_form.dart';
 import 'package:grady/Presentation/utilies/consts.dart';
 import 'package:grady/Presentation/utilies/custom_button.dart';
 class ForgetScreen extends StatefulWidget {
@@ -31,31 +32,10 @@ class _ForgetScreenState extends State<ForgetScreen> {
                   const Text("Don't worry.",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                   const Text("Enter Your email and we'll send you a \nverification code to reset your password. ",),
                   const SizedBox(height: 30,),
-                  TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    textAlign: TextAlign.start,
-                    cursorColor:CupertinoColors.black,
-                    cursorRadius: const Radius.circular(2),
-                    decoration: InputDecoration(
+                  const CustomForgetPasswordForm(),
 
-                      enabledBorder:myInputBorder(),
-                      focusedBorder: myInputBorder(),
-                      labelText: 'Enter Email',
-                      labelStyle:const TextStyle(color: CupertinoColors.black),
-                      prefixIcon:const Icon(Icons.email_outlined,color: CupertinoColors.black,),
-                    ),
-                  ),
-                  const SizedBox(height: 160,),
-                  const CustomElevatedButton(text: 'Continue', pageName: '/verification'),
-                  const SizedBox(height: 20,),
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Create A New Account ?',style: TextStyle(color: Colors.grey)),
-                      TextButton(onPressed:(){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpScreen()));
-                      } ,
-                          child:const Text( 'Sign up',style: TextStyle(color: CupertinoColors.black,decoration: TextDecoration.underline))),
-                    ],),
+
+
                 ],
               ),
             ),

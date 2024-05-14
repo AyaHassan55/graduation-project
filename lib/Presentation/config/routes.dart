@@ -82,7 +82,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/forgetPassword',
       builder: (BuildContext context, GoRouterState state) {
-        return const ForgetScreen();
+        return BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const ForgetScreen(),
+        );
       },
     ),
     GoRoute(
