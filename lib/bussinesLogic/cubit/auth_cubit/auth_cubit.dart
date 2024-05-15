@@ -80,6 +80,7 @@ class AuthCubit extends Cubit<AuthState> {
      }
 
 }
+
    verifyEmail()async{
    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
 }
@@ -92,4 +93,7 @@ class AuthCubit extends Cubit<AuthState> {
          emit(ResetPasswordFailureState(errorMessage: e.toString()));
      }
    }
+
+
+
 }
