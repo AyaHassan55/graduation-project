@@ -28,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const Text(subTitleSignUp,style: TextStyle(color: Colors.grey),),
                 const SizedBox(height: 42,),
                 const CustomSignUpForm(),
-                const SizedBox(height: 20,),
+                const SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

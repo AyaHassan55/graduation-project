@@ -8,7 +8,8 @@ import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_state.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+
+  const LoginScreen({super.key,});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -32,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const Text("Welcome back You 've\n        been missed! ",
                   style: TextStyle(fontWeight: FontWeight.bold),),
                 const SizedBox(height: 42,),
-               const CustomSignInForm(),
+                const CustomSignInForm(),
                 const SizedBox(height: 20,),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   const Text('Create A New Account ?',
@@ -43,7 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: CupertinoColors.black,
                           decoration: TextDecoration.underline))),
                 ],),
-
               ],
             ),
           ),

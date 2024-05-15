@@ -20,7 +20,6 @@ import 'package:grady/Presentation/Screens/MainPages/report_screen.dart';
 import 'package:grady/Presentation/Screens/on_boarding/boarding_screen.dart';
 import 'package:grady/Presentation/Screens/splash/splash_screen.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
-import 'package:grady/core/services/service_locator.dart';
 
 import '../Screens/MainPages/camera_screen.dart';
 
@@ -47,25 +46,19 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/login',
       builder: (BuildContext context, GoRouterState state) {
-        return BlocProvider(
-          create: (context) => AuthCubit(),
-          child:const LoginScreen(),
-        );
+        return LoginScreen();
       },
     ),
     GoRoute(
       path: '/signUp',
       builder: (BuildContext context, GoRouterState state) {
-        return BlocProvider(
-          create: (context) => AuthCubit(),
-          child: const SignUpScreen(),
-        );
+        return SignUpScreen();
       },
     ),
     GoRoute(
       path: '/sub',
       builder: (BuildContext context, GoRouterState state) {
-        return const SubjectName();
+        return SubjectName();
       },
     ),
     GoRoute(
@@ -97,7 +90,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/home',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        return BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const HomeScreen(),
+        );
       },
     ),
     GoRoute(
@@ -115,7 +111,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/profile',
       builder: (BuildContext context, GoRouterState state) {
-        return const ProfileScreen();
+        return BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const ProfileScreen(),
+        );
       },
     ),
     GoRoute(

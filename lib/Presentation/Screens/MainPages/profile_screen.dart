@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grady/Presentation/Screens/MainPages/about_us_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/edit_profile_screen.dart';
 
+import '../../../bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
 import '../../config/routes.dart';
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -15,6 +17,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool state=false;
   @override
   Widget build(BuildContext context) {
+    final authCubit = BlocProvider.of<AuthCubit>(context);
+    final fullName = authCubit.fullName ?? '';
+    final subjectName=authCubit.subjectName??"";
     return Scaffold(
       appBar: AppBar(
         title:const Text('Profile',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 20)),
@@ -28,8 +33,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ListTile(
               leading:
               Container(width: 90, height: 150, decoration:const BoxDecoration(shape: BoxShape.circle, image: DecorationImage(image:AssetImage('assets/images/girll.png'), ),)),
-              title:const Text('Aya Hassan',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 20)),
-              subtitle:const Text('Flutter Developer',style: TextStyle(fontFamily: 'Poppins',fontSize: 16)),
+              title: Text('Aya Hassan',style:const TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 20)),
+              subtitle: Text('Flutter Developer',style:const TextStyle(fontFamily: 'Poppins',fontSize: 16)),
               trailing:InkWell(onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>const EditProfile()))
                   ,child: SvgPicture.asset('assets/images/edit.svg')),
             ),
@@ -50,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             InkWell(
               onTap: () {
                  FirebaseAuth.instance.signOut();
-                  router.pop();
+
                   router.go('/login');
               },
               child: buildCardProfileScreen(SvgPicture.asset('assets/images/logout.svg') ,'Logout'),

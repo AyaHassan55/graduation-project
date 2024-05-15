@@ -4,8 +4,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grady/Presentation/Screens/Authentication/login_screen.dart';
-import 'package:grady/Presentation/Screens/MainPages/home_screen.dart';
 import 'package:grady/Presentation/Widgets/forget_password_text_widget.dart';
 
 import '../../bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
@@ -20,7 +18,8 @@ class CustomSignInForm extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignInSuccessState) {
-          FirebaseAuth.instance.currentUser!.emailVerified? router.go('/home'):AwesomeDialog(
+          FirebaseAuth.instance.currentUser!.emailVerified? router.go('/sub',
+        ):AwesomeDialog(
             context: context,
             dialogType: DialogType.warning,
             animType: AnimType.rightSlide,
@@ -29,10 +28,7 @@ class CustomSignInForm extends StatelessWidget {
             btnOkOnPress: () {},
             btnOkColor: Colors.orangeAccent,
           ).show();
-
-
         } else if (state is SignInFailureState) {
-
           AwesomeDialog(
             context: context,
             dialogType: DialogType.error,
@@ -58,7 +54,6 @@ class CustomSignInForm extends StatelessWidget {
                 onChanged: (email) {
                   authCubit.email = email;
                 },
-
               ),
               const SizedBox(height: 22,),
               CustomTextField(

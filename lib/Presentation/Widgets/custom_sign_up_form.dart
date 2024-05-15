@@ -3,7 +3,9 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grady/Presentation/Screens/Authentication/login_screen.dart';
 import 'package:grady/Presentation/Widgets/custom_text_field.dart';
+import 'package:grady/Presentation/config/routes.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_state.dart';
 
@@ -22,6 +24,8 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
  bool success =false;
   @override
   Widget build(BuildContext context) {
+    AuthCubit authCubit=BlocProvider.of<AuthCubit>(context);
+
     return  BlocConsumer<AuthCubit, AuthState>(
        listener: (context, state)
     {
@@ -34,7 +38,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           title: 'Done',
           desc: ' Successfully , check your email to verify your account!',
           btnOkOnPress: () {
-            context.go('/login');
+            context.go('/login',);
           },
           btnOkColor: Colors.green,
         ).show();
@@ -63,7 +67,6 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
       }
     },
     builder: (context, state) {
-    AuthCubit authCubit=BlocProvider.of<AuthCubit>(context);
     return Form(
       key: authCubit.signupFormKey,
       child: Column(
@@ -101,7 +104,6 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
             authCubit.password=password;
           },
         ),
-
         const SizedBox(height: 22,),
         CustomTextField(
 
@@ -109,9 +111,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           icon:  const Icon(Icons.lock_outline_rounded,color:Colors.black,),
           suffixIcon: IconButton(
             icon: Icon(
-              authCubit.obscureConfirmPasswordTextValue == true
-                  ? Icons.visibility_outlined
-                  : Icons.visibility_off_outlined,
+              authCubit.obscureConfirmPasswordTextValue == true ? Icons.visibility_outlined : Icons.visibility_off_outlined,
             ),
             onPressed: () {
               authCubit.obscureConfirmPasswordText();
@@ -122,20 +122,21 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
             authCubit.confirmPassword = password;
           },
         ),
-        const SizedBox(height: 80,),
+        const SizedBox(height: 60,),
         state is SignUpLoadingState? const CircularProgressIndicator(color: Colors.black,):
         SizedBox(
           width: double.infinity,
           height: 50,
           child: ElevatedButton(
-            onPressed: () {
-            if(authCubit.signupFormKey.currentState!.validate()){
-               authCubit.signUpWithEmailAndPassword();
-
+            onPressed: ()async {
+            if(authCubit.signupFormKey.currentState!.validate()) {
+              await authCubit.signUpWithEmailAndPassword();
+              // router.go('/sub',);
             }
+
           },
             style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,backgroundColor: Colors.black,shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))),
-            child:const Text('Sign Up',style:  TextStyle(color: Colors.white),),),
+            child:const Text('sign up',style:  TextStyle(color: Colors.white),),),
         )
 
       ],
