@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_state.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 class AuthCubit extends Cubit<AuthState> {
    AuthCubit() : super(AuthInitial());
    String? fullName;
@@ -12,20 +12,19 @@ class AuthCubit extends Cubit<AuthState> {
    String? email;
    String? password;
    String? confirmPassword;
-    String? subjectName;
-   String? documentId;
    bool? obscurePasswordTextValue = true;
    bool? obscureConfirmPasswordTextValue = true;
    GlobalKey<FormState> signupFormKey = GlobalKey();
    GlobalKey<FormState> signInFormKey = GlobalKey();
    GlobalKey<FormState> forgotPasswordFormKey = GlobalKey();
-   GlobalKey<FormState> subjectNameFormKey = GlobalKey();
   signUpWithEmailAndPassword( ) async{
     try {
       emit(SignUpLoadingState());
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email!, password: password!,);
-       await addUserProfile();
-       await verifyEmail();
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email!,
+        password: password!,
+      );
+      verifyEmail();
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -92,32 +91,6 @@ class AuthCubit extends Cubit<AuthState> {
        emit(ResetPasswordSuccessState());
      } catch (e) {
          emit(ResetPasswordFailureState(errorMessage: e.toString()));
-     }
-   }
-
-   void updateSubjectName(String name) {
-     subjectName = name;
-   }
-   Future<void> addUserProfile() async {
-     CollectionReference users = FirebaseFirestore.instance.collection('users');
-     DocumentReference docRef = await users.add({
-       'FullName': fullName,
-       'Email': email,
-       'Password': password,
-       'Phone': phone,
-     });
-     documentId = docRef.id;
-     emit(SignUpSuccessState());
-     log('Document Id=  $documentId');
-   }
-
-   Future<void> addUserSubject() async {
-     log('Aya 345 > $documentId');
-     if (documentId != null) {
-       CollectionReference users = FirebaseFirestore.instance.collection('users');
-       await users.doc(documentId).update({'subject_name': subjectName});
-     } else {
-       log("Document ID is null. Ensure you have added the user profile first.");
      }
    }
 
