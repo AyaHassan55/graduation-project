@@ -57,7 +57,9 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                   ),
-                  Positioned(left: 70,child: InkWell(onTap: (){},child: SvgPicture.asset('assets/images/edit.svg'))),
+                  Positioned(left: 70,child: InkWell(onTap: (){
+                    
+                  },child: SvgPicture.asset('assets/images/edit.svg'))),
                 ],
               ),
             ),

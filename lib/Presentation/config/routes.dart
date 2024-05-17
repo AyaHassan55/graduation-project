@@ -96,12 +96,12 @@ final GoRouter router = GoRouter(
         );
       },
     ),
-    GoRoute(
-      path: '/notification',
-      builder: (BuildContext context, GoRouterState state) {
-        return const NotificationScreen();
-      },
-    ),
+    // GoRoute(
+    //   path: '/notification',
+    //   builder: (BuildContext context, GoRouterState state) {
+    //     return const NotificationScreen();
+    //   },
+    // ),
     GoRoute(
       path: '/leader',
       builder: (BuildContext context, GoRouterState state) {

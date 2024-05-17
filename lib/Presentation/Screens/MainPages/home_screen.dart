@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:grady/Presentation/Screens/MainPages/camera_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/courses_Screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/leaderboard_screen.dart';
+import 'package:grady/Presentation/Screens/MainPages/notification_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/profile_screen.dart';
 import 'package:grady/Presentation/Widgets/home_body_widget.dart';
 import 'package:grady/Presentation/Widgets/today_leader_board.dart';
@@ -18,9 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex=0;
   bool on=false;
-
-  final List<Widget> _screens = [const HomeScreen(), const LeaderBoardScreen(), const CourseScreen(), const ProfileScreen(),
-      CameraScreen()
+  final List<Widget> _screens = [const HomeScreen(), const LeaderBoardScreen(), const CourseScreen(), const ProfileScreen(), CameraScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,22 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(top: 18.0,bottom: 18.0),
         child: ListView(
           children:  [
-            const HomeListTile(),
+        ListTile (
+        leading:  Container(
+        width: 70,
+          height: 70,
+          decoration:const BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image:AssetImage('assets/images/girll.png'),
+
+            ),
+          ),
+        ),
+        title: const Text('Hi Aya..',style: TextStyle(fontFamily: 'Poppins',color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),),
+        subtitle:const Text('How are you doing today ?',style: TextStyle(fontFamily: 'Poppins',color: Colors.black,fontSize: 13,fontWeight: FontWeight.bold),),
+        trailing:InkWell(onTap:()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const NotificationScreen())) ,child: SvgPicture.asset('assets/images/bell.svg')),
+      ),
             Padding(
               padding:  const EdgeInsets.all(18.0),
               child:  Column(

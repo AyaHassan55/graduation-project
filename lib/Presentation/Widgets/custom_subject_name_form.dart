@@ -22,6 +22,7 @@ class _CustomSubjectNameForm extends State<CustomSubjectNameForm> {
   @override
   Widget build(BuildContext context) {
     String subject='';
+
     return  BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state)
       {
