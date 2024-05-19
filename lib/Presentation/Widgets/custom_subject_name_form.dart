@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,7 +19,6 @@ class CustomSubjectNameForm extends StatefulWidget
 class _CustomSubjectNameForm extends State<CustomSubjectNameForm> {
   @override
   Widget build(BuildContext context) {
-    String subject='';
 
     return  BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state)
@@ -56,7 +53,7 @@ class _CustomSubjectNameForm extends State<CustomSubjectNameForm> {
                     child: ElevatedButton(
                       onPressed: () async{
                         if(authCubit.subjectNameFormKey.currentState!.validate()){
-                          await authCubit.addUserSubject();
+                           authCubit.addUserSubject();
                           log('donnnne adding subject');
                           router.go('/home',
                           );

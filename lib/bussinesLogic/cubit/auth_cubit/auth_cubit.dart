@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,11 +12,13 @@ class AuthCubit extends Cubit<AuthState> {
    String? phone;
    String? email;
    String? password;
+   String? subjectName;
    String? confirmPassword;
    bool? obscurePasswordTextValue = true;
    bool? obscureConfirmPasswordTextValue = true;
    GlobalKey<FormState> signupFormKey = GlobalKey();
    GlobalKey<FormState> signInFormKey = GlobalKey();
+   GlobalKey<FormState> subjectNameFormKey = GlobalKey();
    GlobalKey<FormState> forgotPasswordFormKey = GlobalKey();
   signUpWithEmailAndPassword( ) async{
     try {
@@ -24,6 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
         email: email!,
         password: password!,
       );
+       addUserProfile();
       verifyEmail();
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
@@ -94,6 +98,27 @@ class AuthCubit extends Cubit<AuthState> {
      }
    }
 
-
+  void updateSubjectName(String name) async{
+    subjectName=name;
+  }
+  String? documentId;
+  void addUserProfile()async{
+    CollectionReference user=FirebaseFirestore.instance.collection('userInfo');
+    DocumentReference docRef=await user.add({
+      'Full Name ':fullName,
+      'Email':email,
+      'password':password,
+      'phone':phone,
+    });
+    documentId=docRef.id;
+  }
+  void addUserSubject()async{
+    if(documentId !=null){
+      CollectionReference user=FirebaseFirestore.instance.collection('userInfo');
+      await user.doc(documentId).update({'subject name':subjectName});
+    }else{
+      log('Document ID is Null');
+    }
+  }
 
 }

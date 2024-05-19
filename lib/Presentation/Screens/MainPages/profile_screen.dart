@@ -17,9 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool state=false;
   @override
   Widget build(BuildContext context) {
-    final authCubit = BlocProvider.of<AuthCubit>(context);
-    final fullName = authCubit.fullName ?? '';
-    final subjectName=authCubit.subjectName??"";
+
     return Scaffold(
       appBar: AppBar(
         title:const Text('Profile',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 20)),
