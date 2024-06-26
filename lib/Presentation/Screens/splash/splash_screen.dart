@@ -1,11 +1,10 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/database/cache/chash_helper.dart';
+import '../../../core/database/cache/chach_helper.dart';
 import '../../../core/services/service_locator.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

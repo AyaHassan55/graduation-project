@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:grady/Presentation/config/routes.dart' ;
 import 'package:grady/Presentation/utilies/custom_button.dart';
-import 'package:grady/core/database/cache/chash_helper.dart';
+import 'package:grady/core/database/cache/chach_helper.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

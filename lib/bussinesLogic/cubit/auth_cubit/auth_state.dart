@@ -30,3 +30,23 @@ final class SignUpFailureState extends AuthState {
 
   ResetPasswordFailureState({required this.errorMessage});
  }
+
+ final class UploadImageLoadingState extends AuthState{}
+ final class UploadImageSuccessState extends AuthState{
+ }
+ final class UploadImageFailureState extends AuthState{
+ final String errorMessage;
+
+ UploadImageFailureState({required this.errorMessage});}
+
+
+final class UpdateSubjectNameSuccessState extends AuthState{}
+final class UpdateSubjectNameLoadingState extends AuthState{}
+final class UpdateSubjectNameFailureState extends AuthState{
+ final String errorMessage;
+ UpdateSubjectNameFailureState({required this.errorMessage});
+}
+
+
+
+

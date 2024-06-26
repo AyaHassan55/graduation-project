@@ -15,7 +15,7 @@ class LocalNotificationService {
  static void showNotification(String message) async{
 
    NotificationDetails details=const NotificationDetails(android: AndroidNotificationDetails('id 1','yarab '));
-   await flutterLocalNotificationsPlugin.show(0, 'Hi,Aya', 'Attention Alert: "Heads up! 1 students in the back row seem to be losing focus. Consider checking in or changing topics."', details);
+   await flutterLocalNotificationsPlugin.show(0, 'Hi,Doc', 'Attention Alert: "Heads up! 1 students in the back row seem to be losing focus."', details);
    NotificationModel notification = NotificationModel(
      message: message,
      time: DateTime.now(),

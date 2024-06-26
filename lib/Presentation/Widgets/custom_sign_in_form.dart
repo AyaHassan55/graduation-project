@@ -5,12 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grady/Presentation/Widgets/forget_password_text_widget.dart';
-
 import '../../bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
 import '../../bussinesLogic/cubit/auth_cubit/auth_state.dart';
+import '../../core/database/cache/chach_helper.dart';
+import '../../core/services/service_locator.dart';
 import '../config/routes.dart';
 import 'custom_text_field.dart';
-
 class CustomSignInForm extends StatelessWidget {
   const CustomSignInForm({super.key});
   @override
@@ -18,16 +18,23 @@ class CustomSignInForm extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignInSuccessState) {
-          FirebaseAuth.instance.currentUser!.emailVerified? router.go('/sub',
-        ):AwesomeDialog(
-            context: context,
-            dialogType: DialogType.warning,
-            animType: AnimType.rightSlide,
-            headerAnimationLoop: false,
-            desc: 'please verify your account',
-            btnOkOnPress: () {},
-            btnOkColor: Colors.orangeAccent,
-          ).show();
+          if( FirebaseAuth.instance.currentUser!.emailVerified){
+            bool isSubjectScreenVisited = getIt<CacheHelper>().getData(key: "isSubjectScreenVisited") ?? false;
+            isSubjectScreenVisited == true?router.go('/home'): router.go('/sub',);
+
+          }
+          // FirebaseAuth.instance.currentUser!.emailVerified? router.go('/sub',)
+        else{
+            AwesomeDialog(
+              context: context,
+              dialogType: DialogType.warning,
+              animType: AnimType.rightSlide,
+              headerAnimationLoop: false,
+              desc: 'please verify your account',
+              btnOkOnPress: () {},
+              btnOkColor: Colors.orangeAccent,
+            ).show();
+          }
         } else if (state is SignInFailureState) {
           AwesomeDialog(
             context: context,
@@ -39,7 +46,7 @@ class CustomSignInForm extends StatelessWidget {
             btnOkColor: Colors.red,
           ).show();
         }else{
-          log('it canttttttttttt!');
+          log("it can't!");
         }
       },
       builder: (context, state) {
@@ -58,7 +65,7 @@ class CustomSignInForm extends StatelessWidget {
               const SizedBox(height: 22,),
               CustomTextField(
                 label: 'Enter Your Password',
-                icon: const Icon(Icons.email_outlined),
+                icon: const Icon(Icons.lock_outline_rounded,color:Colors.black,),
                 suffixIcon: IconButton(
                   icon: Icon(
                     authCubit.obscurePasswordTextValue == true ? Icons.visibility_outlined : Icons.visibility_off_outlined,

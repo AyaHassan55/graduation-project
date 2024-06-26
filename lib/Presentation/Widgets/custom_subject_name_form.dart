@@ -2,28 +2,24 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:grady/Presentation/Widgets/custom_text_field.dart';
 import 'package:grady/Presentation/config/routes.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_state.dart';
-
+import '../../core/database/cache/chach_helper.dart';
+import '../../core/services/service_locator.dart';
 class CustomSubjectNameForm extends StatefulWidget
 {
   const CustomSubjectNameForm({super.key});
-
   @override
   State<CustomSubjectNameForm> createState() => _CustomSubjectNameForm();
 }
-
 class _CustomSubjectNameForm extends State<CustomSubjectNameForm> {
   @override
   Widget build(BuildContext context) {
 
     return  BlocConsumer<AuthCubit, AuthState>(
-      listener: (context, state)
-      {
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         AuthCubit authCubit=BlocProvider.of<AuthCubit>(context);
         return Form(
@@ -46,18 +42,29 @@ class _CustomSubjectNameForm extends State<CustomSubjectNameForm> {
                     },
                   ),
                   const SizedBox(height: 360,),
-                  state is SignUpLoadingState? const CircularProgressIndicator(color: Colors.black,):
+                  state is UpdateSubjectNameLoadingState? const CircularProgressIndicator(color: Colors.black,):
                   SizedBox(
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () async{
-                        if(authCubit.subjectNameFormKey.currentState!.validate()){
-                           authCubit.addUserSubject();
-                          log('donnnne adding subject');
-                          router.go('/home',
-                          );
 
+                        if(authCubit.subjectNameFormKey.currentState!.validate()){
+                          final userId = authCubit.userId;
+                          if (userId != null) {
+                            await authCubit.updateSubjectNameInFireStore(userId, authCubit.subjectName!);
+                            await authCubit.addOrUpdateSubject(userId, authCubit.subjectName!);
+                            getIt<CacheHelper>().saveData(key: 'isSubjectScreenVisited', value: true);
+                            router.go('/home');
+
+                          } else {
+                            log('User ID is null');
+                          }
+
+
+
+                        }else{
+                          const CircularProgressIndicator(color: Colors.red,);
                         }
                       },
                       style: ElevatedButton.styleFrom(shadowColor: Colors.grey,elevation: 5,backgroundColor: Colors.black,shape:const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))),

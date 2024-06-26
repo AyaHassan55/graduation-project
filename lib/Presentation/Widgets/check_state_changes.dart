@@ -7,7 +7,7 @@ void checkStateChanges() {
       .listen((User? user) {
     if (user == null) {
       if (kDebugMode) {
-        print('7777777User is currently signed out!');
+        print('User is currently signed out!');
       }
     } else {
       if (kDebugMode) {

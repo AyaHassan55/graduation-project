@@ -3,25 +3,25 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grady/Presentation/Screens/Authentication/login_screen.dart';
 import 'package:grady/Presentation/Widgets/custom_text_field.dart';
-import 'package:grady/Presentation/config/routes.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_state.dart';
-
 class CustomSignUpForm extends StatefulWidget
 {
   const CustomSignUpForm({super.key});
-
   @override
   State<CustomSignUpForm> createState() => _CustomSignUpFormState();
 }
-
 class _CustomSignUpFormState extends State<CustomSignUpForm> {
-  // final TextEditingController controller =  TextEditingController();
-
-
  bool success =false;
+ String? validateEmail(String? email){
+   RegExp emailRegex=RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+   final isEmailValid=emailRegex.hasMatch(email??'');
+   if(!isEmailValid){
+     return 'Please enter a valid email';
+   }
+   return null;
+ }
   @override
   Widget build(BuildContext context) {
     AuthCubit authCubit=BlocProvider.of<AuthCubit>(context);
@@ -59,8 +59,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           animType: AnimType.rightSlide,
           headerAnimationLoop: false,
           title: 'Error',
-          desc:
-          state.errMessage,
+          desc: state.errMessage,
           btnOkOnPress: () {},
           btnOkColor: Colors.red,
         ).show();
@@ -82,13 +81,16 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
             onChanged: (String phone) {
               authCubit.phone=phone;
             },
-            keyboardType:TextInputType.phone
+            keyboardType:TextInputType.phone,
+
         ),
         const SizedBox(height: 22,),
-        CustomTextField(label:'Enter Your Email', icon:  const Icon(Icons.email_outlined,color:Colors.black,) ,
+        CustomTextField(
+            label:'Enter Your Email',
+            icon:  const Icon(Icons.email_outlined,color:Colors.black,) ,
             onChanged: (String emailAddress) {
               authCubit.email=emailAddress;
-            },keyboardType:TextInputType.emailAddress ),
+            }, keyboardType:TextInputType.emailAddress ,validator: validateEmail,),
         const SizedBox(height: 22,),
         CustomTextField(
           label: 'Enter Your Password',
@@ -98,6 +100,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
             onPressed: () {
               authCubit.obscurePasswordText();
             },
+
           ),
           obscureText: authCubit.obscurePasswordTextValue,
           onChanged: (password) {
@@ -106,7 +109,6 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
         ),
         const SizedBox(height: 22,),
         CustomTextField(
-
           label: 'Confirm Password',
           icon:  const Icon(Icons.lock_outline_rounded,color:Colors.black,),
           suffixIcon: IconButton(
@@ -116,12 +118,22 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
             onPressed: () {
               authCubit.obscureConfirmPasswordText();
             },
+
+
           ),
           obscureText: authCubit.obscureConfirmPasswordTextValue,
+
           onChanged: (password) {
             authCubit.confirmPassword = password;
           },
+          validator: (confirmPassword) {
+            if (confirmPassword != authCubit.password) {
+              return 'Passwords do not match';
+            }
+            return null;
+          },
         ),
+
         const SizedBox(height: 60,),
         state is SignUpLoadingState? const CircularProgressIndicator(color: Colors.black,):
         SizedBox(
@@ -129,6 +141,7 @@ class _CustomSignUpFormState extends State<CustomSignUpForm> {
           height: 50,
           child: ElevatedButton(
             onPressed: ()async {
+
             if(authCubit.signupFormKey.currentState!.validate()) {
               await authCubit.signUpWithEmailAndPassword();
               // router.go('/sub',);

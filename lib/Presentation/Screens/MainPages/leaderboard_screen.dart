@@ -1,66 +1,68 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
+import '../../config/routes.dart';
 class LeaderBoardScreen extends StatelessWidget {
   const LeaderBoardScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         centerTitle: true,
-        leading:const Icon(Icons.arrow_back_ios,color: Colors.black,),
-        title:const Text('Leaderboard',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 20),),
+        title: const Text('Leaderboard'),
+         leading: InkWell(onTap: ()=>router.go('/home'),child:const Icon(Icons.arrow_back_ios,color:Colors.black)),
       ),
-      body:leaderBoardList(),
-    );
-  }
-  Padding leaderBoardList() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView.builder(
-          itemCount: 19,
-          itemBuilder: (context,index){
-            return   Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .orderBy('Percentage', descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return const Center(child: Text('Error fetching data'));
+          }
 
-                margin:const  EdgeInsets.all(8),
-                elevation: 5,
-                shadowColor: Colors.grey,
+          final docs = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: docs.length,
+            itemBuilder: (context, index) {
+              final data = docs[index].data();
+              final Map<String, dynamic>? userData = data as Map<String, dynamic>?;
+              final name = userData?['name'] ?? '';
+              final percentage = userData?['Percentage'] ?? 0.0;
+              final imageUrl = userData?['profilePicture'] ?? '';
+              final formattedPercentage = percentage.toStringAsFixed(1);
+              return SizedBox(
+                height: 70,
+                child: Card(
 
-                child: Padding(
-                  padding:const EdgeInsets.all(8.0),
                   child: ListTile(
-                    leading:Container(
-                      height: 60,width: 60,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/girll.png'), // Path to your SVG file
-                            fit: BoxFit.cover, // Adjust the fit as needed
-                          )
-                      ),
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 30,
+                      backgroundImage: imageUrl !='' ?NetworkImage(imageUrl):const AssetImage('assets/images/account.png') as ImageProvider,
                     ),
-                    title:const Text('Aya Hassan',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 15)),
-                    trailing:CircularPercentIndicator(
-                      radius: 20,
+                    title: Text(name),
+                    trailing: CircularPercentIndicator(
+                      radius: 25,
                       lineWidth: 5.0,
-                      animation: true,
-                      percent: 0.88,
                       progressColor: Colors.black,
-                      center: const Text("95.0%", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.0),
-                      ),
+                      animation: true,
+                       percent: percentage / 100.00,
+                      center: Text('$formattedPercentage%',style:const TextStyle(fontSize: 10.0,fontWeight: FontWeight.bold),),
 
                     ),
                   ),
                 ),
-
-              ),
-            );
-          }),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

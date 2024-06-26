@@ -14,9 +14,7 @@ import 'package:grady/Presentation/Screens/MainPages/courses_Screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/edit_profile_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/home_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/leaderboard_screen.dart';
-import 'package:grady/Presentation/Screens/MainPages/notification_screen.dart';
 import 'package:grady/Presentation/Screens/MainPages/profile_screen.dart';
-import 'package:grady/Presentation/Screens/MainPages/report_screen.dart';
 import 'package:grady/Presentation/Screens/on_boarding/boarding_screen.dart';
 import 'package:grady/Presentation/Screens/splash/splash_screen.dart';
 import 'package:grady/bussinesLogic/cubit/auth_cubit/auth_cubit.dart';
@@ -46,19 +44,19 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/login',
       builder: (BuildContext context, GoRouterState state) {
-        return LoginScreen();
+        return const LoginScreen();
       },
     ),
     GoRoute(
       path: '/signUp',
       builder: (BuildContext context, GoRouterState state) {
-        return SignUpScreen();
+        return const SignUpScreen();
       },
     ),
     GoRoute(
       path: '/sub',
       builder: (BuildContext context, GoRouterState state) {
-        return SubjectName();
+        return const SubjectName();
       },
     ),
     GoRoute(
@@ -96,25 +94,17 @@ final GoRouter router = GoRouter(
         );
       },
     ),
-    // GoRoute(
-    //   path: '/notification',
-    //   builder: (BuildContext context, GoRouterState state) {
-    //     return const NotificationScreen();
-    //   },
-    // ),
     GoRoute(
       path: '/leader',
       builder: (BuildContext context, GoRouterState state) {
-        return const LeaderBoardScreen();
+        return  LeaderBoardScreen();
       },
     ),
     GoRoute(
       path: '/profile',
       builder: (BuildContext context, GoRouterState state) {
-        return BlocProvider(
-          create: (context) => AuthCubit(),
-          child: const ProfileScreen(),
-        );
+        return  const ProfileScreen();
+
       },
     ),
     GoRoute(
@@ -135,12 +125,7 @@ final GoRouter router = GoRouter(
         return const AboutUsScreen();
       },
     ),
-    GoRoute(
-      path: '/report',
-      builder: (BuildContext context, GoRouterState state) {
-        return const ReportScreen();
-      },
-    ),
+
     GoRoute(
       path: '/camera',
       builder: (BuildContext context, GoRouterState state) {

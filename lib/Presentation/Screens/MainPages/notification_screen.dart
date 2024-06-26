@@ -19,7 +19,15 @@ class NotificationScreen extends StatelessWidget {
         },
             child:const Icon(Icons.arrow_back_ios, color: Colors.black)),
       ),
-      body: Padding(
+      body:notifications.isEmpty?Column(
+
+        children: [
+        SvgPicture.asset('assets/images/undraw_loading_re_5axr.svg',),
+
+          const SizedBox(height: 60,),
+          const Text("waiting for notification ! ",style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Poppins', fontSize: 20),),
+
+      ],) :Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
           itemCount: notifications.length,
@@ -27,7 +35,7 @@ class NotificationScreen extends StatelessWidget {
             final notification = notifications[index];
             return Card(
               child: ListTile(
-                leading: Image.asset('assets/images/warning.png'),
+                leading:const Icon(Icons.warning,color: Colors.amberAccent,size: 50,),
                 title: Text(notification.message),
                 // subtitle: Text(notification.time.toString()),
               ),

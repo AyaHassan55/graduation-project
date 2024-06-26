@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import '../../config/routes.dart';
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
 
@@ -10,7 +10,7 @@ class AboutUsScreen extends StatelessWidget {
       appBar: AppBar(
         title:const Text('about Us',style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Poppins',fontSize: 20)),
         centerTitle: true,
-        leading:const Icon(Icons.arrow_back_ios,color: Colors.black,),
+        leading:InkWell(onTap:()=>router.go('/profile'),child: const Icon(Icons.arrow_back_ios,color: Colors.black,)),
       ),
       body: ListView(
         children: [
@@ -18,7 +18,7 @@ class AboutUsScreen extends StatelessWidget {
             padding: const EdgeInsets.all(18.0),
             child: Column(
               children: [
-                SvgPicture.asset('assets/images/girl_love.svg'),
+                SvgPicture.asset('assets/images/lovely_girl.svg'),
                 const SizedBox(height: 22,),
 
                 RichText(text:const TextSpan(
